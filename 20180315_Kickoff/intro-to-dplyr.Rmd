@@ -151,7 +151,7 @@ ny.women %>%
 ```{r}
 yearly.means <- BlackWhite_results %>% 
   group_by(year, gender) %>%
-  summarise(ave.yr.gender = mean(LE_wbgap_mean))
+  summarise(ave.yr.gender = mean(diff))
 ```
 
 ## dplyr cheat sheet

@@ -97,7 +97,7 @@
           </hgroup>
   </slide>
 
-<slide class=""><hgroup><h2>What is dplyr?</h2></hgroup><article  id="what-is-dplyr">
+<slide class=''><hgroup><h2>What is dplyr?</h2></hgroup><article  id="what-is-dplyr">
 
 <ul>
 <li>wrangling/cleaning/manipulation</li>
@@ -105,7 +105,7 @@
 <li>best when paired with the piping operator %&gt;%</li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Install and load dplyr</h2></hgroup><article  id="install-and-load-dplyr">
+</article></slide><slide class=''><hgroup><h2>Install and load dplyr</h2></hgroup><article  id="install-and-load-dplyr">
 
 <pre class = 'prettyprint lang-r'>#install.packages(&quot;dplyr&quot;)
 library(dplyr)</pre>
@@ -121,7 +121,7 @@ library(dplyr)</pre>
 ## 
 ##     intersect, setdiff, setequal, union</pre>
 
-</article></slide><slide class=""><hgroup><h2>Example data</h2></hgroup><article  id="example-data">
+</article></slide><slide class=''><hgroup><h2>Example data</h2></hgroup><article  id="example-data">
 
 <ul>
 <li>We&#39;ll use a dataset on life expectancy for black and white Americans to practice using <code>dplyr</code></li>
@@ -131,7 +131,7 @@ library(dplyr)</pre>
 <pre class = 'prettyprint lang-r'># Read in the dataset
 BlackWhite_results &lt;- read.csv(&quot;./BlackWhite_results.csv&quot;)</pre>
 
-</article></slide><slide class=""><hgroup><h2>Take a peak</h2></hgroup><article  id="take-a-peak">
+</article></slide><slide class=''><hgroup><h2>Take a peak</h2></hgroup><article  id="take-a-peak">
 
 <ul>
 <li>Let&#39;s use RStudio&#39;s viewer to look at these data.</li>
@@ -154,11 +154,11 @@ BlackWhite_results &lt;- read.csv(&quot;./BlackWhite_results.csv&quot;)</pre>
 ## [19] &quot;sex&quot;               &quot;Census_Region&quot;     &quot;Census_Division&quot;  
 ## [22] &quot;stabbrs&quot;           &quot;state.map.order&quot;   &quot;stabbrs.map.order&quot;</pre>
 
-</article></slide><slide class=""><hgroup><h2>So. many. variables.</h2></hgroup><article  id="so.-many.-variables.">
+</article></slide><slide class=''><hgroup><h2>So. many. variables.</h2></hgroup><article  id="so.-many.-variables.">
 
 <p>Let&#39;s only keep a subset for further use.</p>
 
-</article></slide><slide class=""><hgroup><h2>dplyr select() to keep or discard variables</h2></hgroup><article  id="dplyr-select-to-keep-or-discard-variables" class="build">
+</article></slide><slide class=''><hgroup><h2>dplyr select() to keep or discard variables</h2></hgroup><article  id="dplyr-select-to-keep-or-discard-variables" class="build">
 
 <ul>
 <li><code>select()</code> is used to select a subset of variables from an existing data frame.</li>
@@ -166,24 +166,24 @@ BlackWhite_results &lt;- read.csv(&quot;./BlackWhite_results.csv&quot;)</pre>
 </ul>
 
 <pre class = 'prettyprint lang-r'>subset &lt;- select(BlackWhite_results, 
-                 LE_white_mean, LE_black_mean, LE_wbgap_mean,
+                 LE_white_mean, LE_black_mean,
                  state, year, sex, stabbrs)
 
 names(subset)</pre>
 
-<pre >## [1] &quot;LE_white_mean&quot; &quot;LE_black_mean&quot; &quot;LE_wbgap_mean&quot; &quot;state&quot;        
-## [5] &quot;year&quot;          &quot;sex&quot;           &quot;stabbrs&quot;</pre>
+<pre >## [1] &quot;LE_white_mean&quot; &quot;LE_black_mean&quot; &quot;state&quot;         &quot;year&quot;         
+## [5] &quot;sex&quot;           &quot;stabbrs&quot;</pre>
 
 <pre class = 'prettyprint lang-r'>dim(subset)</pre>
 
-<pre >## [1] 3600    7</pre>
+<pre >## [1] 3600    6</pre>
 
-</article></slide><slide class=""><hgroup><h2>dplyr select() to keep or discard variables (columns)</h2></hgroup><article  id="dplyr-select-to-keep-or-discard-variables-columns" class="build">
+</article></slide><slide class=''><hgroup><h2>dplyr select() to keep or discard variables (columns)</h2></hgroup><article  id="dplyr-select-to-keep-or-discard-variables-columns" class="build">
 
 <p>Write this another way using the <strong>piping</strong> operator (%&gt;%)</p>
 
 <pre class = 'prettyprint lang-r'>subset2 &lt;- BlackWhite_results %&gt;% 
-  select(LE_white_mean, LE_black_mean, LE_wbgap_mean,
+  select(LE_white_mean, LE_black_mean,
          state, year, sex, stabbrs)</pre>
 
 <p>Confirm that <code>subset</code> and <code>subset2</code> are identical:</p>
@@ -192,9 +192,9 @@ names(subset)</pre>
 
 <pre >## [1] TRUE</pre>
 
-<pre class = 'prettyprint lang-r'>BlackWhite_Results &lt;- subset2</pre>
+<pre class = 'prettyprint lang-r'>BlackWhite_results &lt;- subset2</pre>
 
-</article></slide><slide class=""><hgroup><h2>dplyr mutate() to add a new variable</h2></hgroup><article  id="dplyr-mutate-to-add-a-new-variable" class="build">
+</article></slide><slide class=''><hgroup><h2>dplyr mutate() to add a new variable</h2></hgroup><article  id="dplyr-mutate-to-add-a-new-variable" class="build">
 
 <ul>
 <li>What if you wanted to calculate the difference (in years) between the life expectancy for blacks and whites?</li>
@@ -203,7 +203,7 @@ names(subset)</pre>
 <pre class = 'prettyprint lang-r'>BlackWhite_results &lt;- BlackWhite_results %&gt;% 
   mutate(diff = LE_white_mean - LE_black_mean)</pre>
 
-</article></slide><slide class=""><hgroup><h2>dplyr mutate() to add a new variable</h2></hgroup><article  id="dplyr-mutate-to-add-a-new-variable-1" class="build">
+</article></slide><slide class=''><hgroup><h2>dplyr mutate() to add a new variable</h2></hgroup><article  id="dplyr-mutate-to-add-a-new-variable-1" class="build">
 
 <ul>
 <li>Take a peak to see the calculated difference</li>
@@ -3814,17 +3814,21 @@ names(subset)</pre>
 ## 3599      82.24197      76.28350  5.95847174      Wisconsin 2013 Female
 ## 3600      77.79645      70.88431  6.91213667      Wisconsin 2013   Male</pre>
 
-</article></slide><slide class=""><hgroup><h2>dplyr rename() to rename a variable</h2></hgroup><article  id="dplyr-rename-to-rename-a-variable" class="build">
+</article></slide><slide class=''><hgroup><h2>dplyr rename() to rename a variable</h2></hgroup><article  id="dplyr-rename-to-rename-a-variable" class="build">
 
 <ul>
-<li>Try coming up with the code to rename the <code>sex</code> variable as <code>gender</code></li>
-<li>Hint: The new name will come first in your code snippet!</li>
+<li>Let&#39;s rename the <code>sex</code> variable as <code>gender</code></li>
 </ul>
 
 <pre class = 'prettyprint lang-r'>BlackWhite_results &lt;- BlackWhite_results %&gt;% 
-  rename(gender = sex)</pre>
+  rename(gender = sex)
 
-</article></slide><slide class=""><hgroup><h2>dplyr arrange() to sort the dataset based on one or several variables</h2></hgroup><article  id="dplyr-arrange-to-sort-the-dataset-based-on-one-or-several-variables" class="build">
+names(BlackWhite_results)</pre>
+
+<pre >## [1] &quot;LE_white_mean&quot; &quot;LE_black_mean&quot; &quot;state&quot;         &quot;year&quot;         
+## [5] &quot;gender&quot;        &quot;stabbrs&quot;       &quot;diff&quot;</pre>
+
+</article></slide><slide class=''><hgroup><h2>dplyr arrange() to sort the dataset based on one or several variables</h2></hgroup><article  id="dplyr-arrange-to-sort-the-dataset-based-on-one-or-several-variables" class="build">
 
 <ul>
 <li>Try <code>arrange()</code>ing the dataset by the <code>diff</code> variable, and by <code>-diff</code></li>
@@ -3837,11 +3841,10 @@ names(subset)</pre>
 Results_sort2 &lt;- BlackWhite_results %&gt;% 
   arrange(-diff)</pre>
 
-</article></slide><slide class=""><hgroup><h2>dplyr filter() to subset the data&#39;s rows based on a condition</h2></hgroup><article  id="dplyr-filter-to-subset-the-datas-rows-based-on-a-condition" class="build">
+</article></slide><slide class=''><hgroup><h2>dplyr filter() to subset the data&#39;s rows based on a condition</h2></hgroup><article  id="dplyr-filter-to-subset-the-datas-rows-based-on-a-condition" class="build">
 
 <ul>
-<li>Try using <code>filter()</code> to create a new dataset <code>ny.women</code> that contains only women from New York.</li>
-<li>Hint: the values of gender in the dataset are &quot;Female&quot; and &quot;Male&quot;</li>
+<li>Let&#39;s use <code>filter()</code> to create a new dataset <code>ny.women</code> that contains only women from New York.</li>
 </ul>
 
 <pre class = 'prettyprint lang-r'>ny.women &lt;- BlackWhite_results %&gt;% 
@@ -3849,9 +3852,9 @@ Results_sort2 &lt;- BlackWhite_results %&gt;%
 
 dim(ny.women)</pre>
 
-<pre >## [1] 45 25</pre>
+<pre >## [1] 45  7</pre>
 
-</article></slide><slide class=""><hgroup><h2>dplyr summarise() to perform an aggregated calculation</h2></hgroup><article  id="dplyr-summarise-to-perform-an-aggregated-calculation">
+</article></slide><slide class=''><hgroup><h2>dplyr summarise() to perform an aggregated calculation</h2></hgroup><article  id="dplyr-summarise-to-perform-an-aggregated-calculation">
 
 <ul>
 <li>Summarise can be used to calculate summary statistics</li>
@@ -3865,7 +3868,7 @@ dim(ny.women)</pre>
 <pre >##   average.le.white average.le.black
 ## 1             79.3             75.9</pre>
 
-</article></slide><slide class=""><hgroup><h2>Stacking dplyr() functions using %&gt;%</h2></hgroup><article  id="stacking-dplyr-functions-using">
+</article></slide><slide class=''><hgroup><h2>Stacking dplyr() functions using %&gt;%</h2></hgroup><article  id="stacking-dplyr-functions-using">
 
 <ul>
 <li>What does this code do?</li>
@@ -3879,7 +3882,7 @@ dim(ny.women)</pre>
 <pre >##   average.le.white average.le.black
 ## 1             82.9             82.5</pre>
 
-</article></slide><slide class=""><hgroup><h2>dplyr group_by() %&gt;% summarise()</h2></hgroup><article  id="dplyr-group_by-summarise">
+</article></slide><slide class=''><hgroup><h2>dplyr group_by() %&gt;% summarise()</h2></hgroup><article  id="dplyr-group_by-summarise">
 
 <ul>
 <li>Pair together <code>group_by()</code> and <code>summarise()</code> to calculate summary statistics within groups</li>
@@ -3887,15 +3890,15 @@ dim(ny.women)</pre>
 
 <pre class = 'prettyprint lang-r'>yearly.means &lt;- BlackWhite_results %&gt;% 
   group_by(year, gender) %&gt;%
-  summarise(ave.yr.gender = mean(LE_wbgap_mean))</pre>
+  summarise(ave.yr.gender = mean(diff))</pre>
 
-</article></slide><slide class=""><hgroup><h2>dplyr cheat sheet</h2></hgroup><article  id="dplyr-cheat-sheet">
+</article></slide><slide class=''><hgroup><h2>dplyr cheat sheet</h2></hgroup><article  id="dplyr-cheat-sheet">
 
 <ul>
 <li><a href='https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf' title=''>https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf</a></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>Connect</h2></hgroup><article  id="connect">
+</article></slide><slide class=''><hgroup><h2>Connect</h2></hgroup><article  id="connect">
 
 <ul>
 <li>Mail: <a href='mailto:corinne.riddell@mail.mcgill.ca' title=''>corinne.riddell@mail.mcgill.ca</a></li>
@@ -3914,7 +3917,7 @@ dim(ny.women)</pre>
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
-    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 </script>
