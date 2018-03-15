@@ -1,0 +1,166 @@
+---
+title: "dplyr in ten minutes!"
+author: "Corinne Riddell (post-doc @McGill)"
+date: "3/15/2018"
+output: ioslides_presentation
+---
+
+##What is dplyr?
+
+- wrangling/cleaning/manipulation
+- human readable
+- best when paired with the piping operator %>%
+
+##Install and load dplyr
+
+```{r}
+#install.packages("dplyr")
+library(dplyr)
+```
+
+##Example data
+
+- We'll use a dataset on life expectancy for black and white Americans to practice using `dplyr`
+- Let's start by importing these data into R
+
+```{r import-data}
+# Read in the dataset
+BlackWhite_results <- read.csv("./BlackWhite_results.csv")
+```
+
+##Take a peak
+
+- Let's use RStudio's viewer to look at these data.
+- Click the table icon next to BlackWhite_results in the environment tab or run `View(BlackWhite_results)`
+- If you aren't using RStudio, you can use `head(BlackWhite_results)` to see the first six lines of data
+
+```{r dimensions-and-names}
+dim(BlackWhite_results)
+names(BlackWhite_results)
+```
+
+## So. many. variables.
+
+Let's only keep a subset for further use.
+
+##dplyr select() to keep or discard variables {.build}
+
+- `select()` is used to select a subset of variables from an existing data frame.
+- You can explicitly select the variables you'd like to keep, or "negatively" 
+`select()` (i.e, remove) variables you'd like to discard.
+
+```{r select-example}
+subset <- select(BlackWhite_results, 
+                 LE_white_mean, LE_black_mean,
+                 state, year, sex, stabbrs)
+
+names(subset)
+dim(subset)
+```
+
+##dplyr select() to keep or discard variables (columns) {.build}
+
+Write this another way using the **piping** operator (%>%)
+
+```{r select-pipe-example}
+subset2 <- BlackWhite_results %>% 
+  select(LE_white_mean, LE_black_mean,
+         state, year, sex, stabbrs)
+```
+
+Confirm that `subset` and `subset2` are identical:
+```{r check-identical}
+identical(subset, subset2)
+
+BlackWhite_results <- subset2
+```
+
+## dplyr mutate() to add a new variable {.build}
+
+- What if you wanted to calculate the difference (in years) between the life expectancy
+for blacks and whites?
+
+```{r mutate-check}
+BlackWhite_results <- BlackWhite_results %>% 
+  mutate(diff = LE_white_mean - LE_black_mean)
+```
+
+## dplyr mutate() to add a new variable {.build}
+
+- Take a peak to see the calculated difference
+
+```{r view-results}
+BlackWhite_results %>% select(LE_white_mean, LE_black_mean, 
+                              diff, state, year, sex) 
+```
+                              
+## dplyr rename() to rename a variable {.build}
+- Let's rename the `sex` variable as `gender`
+
+```{r solution-ex4}
+BlackWhite_results <- BlackWhite_results %>% 
+  rename(gender = sex)
+
+names(BlackWhite_results)
+```
+
+## dplyr arrange() to sort the dataset based on one or several variables {.build}
+- Try `arrange()`ing the dataset by the `diff` variable, and by `-diff`
+- Have a look at the results to compare
+
+```{r solution-ex5}
+Results_sort1 <- BlackWhite_results %>% 
+  arrange(diff)
+
+Results_sort2 <- BlackWhite_results %>% 
+  arrange(-diff)
+```
+
+## dplyr filter() to subset the data's rows based on a condition {.build}
+- Let's use `filter()` to create a new dataset `ny.women` that contains only women from New York.
+
+```{r filter}
+ny.women <- BlackWhite_results %>% 
+  filter(state == "New York", gender == "Female")
+
+dim(ny.women)
+```
+
+## dplyr summarise() to perform an aggregated calculation
+- Summarise can be used to calculate summary statistics
+- What variable does this code summarize over?
+
+```{r summarise}
+ny.women %>% 
+  summarise(average.le.white = round(mean(LE_white_mean), 1),
+            average.le.black = round(mean(LE_black_mean), 1))
+```
+
+## Stacking dplyr() functions using %>%
+- What does this code do?
+```{r filter-and-summarise-stacked}
+ BlackWhite_results %>% 
+  filter(state == "New York", gender == "Female", year > 2010) %>%
+  summarise(average.le.white = round(mean(LE_white_mean), 1),
+            average.le.black = round(mean(LE_black_mean), 1))
+```
+
+## dplyr group_by() %>% summarise() 
+- Pair together `group_by()` and `summarise()` to calculate summary statistics within groups
+
+```{r}
+yearly.means <- BlackWhite_results %>% 
+  group_by(year, gender) %>%
+  summarise(ave.yr.gender = mean(LE_wbgap_mean))
+```
+
+## dplyr cheat sheet
+
+- https://www.rstudio.com/wp-content/uploads/2015/02/data-wrangling-cheatsheet.pdf
+
+## Connect
+  
+- Mail: corinne.riddell@mail.mcgill.ca
+- Web: corinneriddell.com
+- GitHub: corinne-riddell
+- Twitter: @datavisitor
