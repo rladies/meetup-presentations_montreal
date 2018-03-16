@@ -17,7 +17,7 @@
 R-Ladies lives through its participants. We *ALWAYS* need speakers for meetups! Please get in touch with us through our [meetup page](https://www.meetup.com/rladies-montreal/)
 
 ## Further information
-Organisers are: [Corinne Riddell](corinneriddell.com), [Kathryn Morrison](https://www.precision-analytics.ca/ourteam/), and [Erika BraithWaite](https://www.precision-analytics.ca/ourteam/).
+Organisers are: [Corinne Riddell](corinneriddell.com), [Kathryn Morrison](https://www.precision-analytics.ca/ourteam/), and [Erika Braithwaite](https://www.precision-analytics.ca/ourteam/).
 
 Checkout our [Meetup page](https://www.meetup.com/rladies-montreal/).
 
