@@ -2,7 +2,7 @@
 title: "dplyr in ten minutes!"
 author: "Corinne Riddell (post-doc @McGill)"
 date: "3/15/2018"
-output: ioslides_presentation
+output: md_document
 ---
 
 ##What is dplyr?
