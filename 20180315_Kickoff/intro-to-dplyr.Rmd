@@ -90,8 +90,7 @@ BlackWhite_results <- BlackWhite_results %>%
 - Take a peak to see the calculated difference
 
 ```{r view-results}
-BlackWhite_results %>% select(LE_white_mean, LE_black_mean, 
-                              diff, state, year, sex) 
+head(BlackWhite_results)
 ```
                               
 ## dplyr rename() to rename a variable {.build}
@@ -114,6 +113,9 @@ Results_sort1 <- BlackWhite_results %>%
 
 Results_sort2 <- BlackWhite_results %>% 
   arrange(-diff)
+
+head(Results_sort1)
+head(Results_sort2)
 ```
 
 ## dplyr filter() to subset the data's rows based on a condition {.build}
