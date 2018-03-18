@@ -1,0 +1,201 @@
+---
+title: "Joining data frames in R using dplyr"
+author: "Erika Braithwaite & Kathryn Morrison"
+date: "March 15, 2018"
+output:
+  slidy_presentation: default
+  ioslides_presentation: default
+  beamer_presentation: default
+subtitle: RLadies Montreal
+---
+
+
+# What is joining?
+
+We often run into scenarios where we need to join two data frames together. Let's say we had some students who were given an IQ test at a career fair. Some of the students showed up at on both days, but not all. They were given unique alphabetic identifiers (A-Q)
+
+Set up
+```{r}
+#install.packages('pacman')
+pacman::p_load(knitr, kableExtra, data.table, dplyr, 
+               rmarkdown, magrittr, xtable)
+```
+
+Make some data 
+```{r, echo = T}
+day1 =  data.table(ID=LETTERS[1:12], IQ=round(rnorm(12, 100, 15),2))
+
+day2 =  data.table(ID=LETTERS[6:17],IQ=round(rnorm(12, 100, 20),2))
+```
+There are 12 individuals on day 1 and 12 individuals on day 2. 10 people have a single measurement while 7 have 2 measurements
+
+# Our data   
+
+```{r, echo = F, results = 'asis'}
+kable(list(day1, day2), 'html') %>% 
+        kable_styling(full_width = F, font_size = 24)
+```
+
+Let's explore the three(ish) types of joins in `dplyr`
+
+# Mutating joins  
+#####  Add a new variables to one table from matching rows in another
+
+The order in which we specify the data frames in the `join` function determines which is considered primary (left) versus secondary (right)
+
+* `left_join`:  retains rows in first data frame specified if it has a match in the secondary
+* `right_join`: retains rows in the secondary data frame specified if it has a match in the primary (equivalent to `left_join` if you invert order of data frames)
+* `inner_join`: retains rows present in both data frame where the keys match  
+* `full_join`: retains all rows in either data frames
+
+Left, right and full joins are considered outer joins because when a row doesn't match, the columns are filled with `NA` instead of being dropped by the `join`. Furthermore, multiple matches on the key will result in all combinations being returned.  
+
+# Filtering joins 
+#####  Filter observations from the primary based on whether they are present in the secondary table
+
+* `semi_join`: retains rows in the primary table that have a match in secondary table
+* `anti_join`: drops rows in the primary table that have a match in secondary table
+
+Filtering joins act as a filter in that they change the number of rows but not the columns. Unlike mutating joins, rows are never duplicated (as in the case of an inner join). Only columns from the primary data frame are retained.  
+
+# Set operations 
+##### Combines operations in the dataset as if they were set elements. Much like filtering joins, they do not add new columns. Set operations use combinations of observations from both data frames to create a new data frame  
+
+* `intersect`: retains rows ONLY if they appear in both data frames
+* `union`: retains rows that appear in EITHER data frames, but only retains one copy
+* `setdiff`: retains rows that ONLY appear in the primary data frame but not the second
+
+
+# Main arguments 
+
+```{r, eval = FALSE}
+right_join(x, y, by = NULL, copy = FALSE, suffix = c('.x', '.y'), ...)
+```
+
+* `y` and `y` are the two data frames we are joining 
+* `by` = primary key variable (typically a unique identifier) which can be one or several columns. The foreign key is the indentifier in the secondary table, which will be matched to the primary tables based on the primary key.
+* `copy` = copy values of secondary data frame to the primary
+* `suffix` will add a suffix to columns when they have the same name, e.g. `x.IQ` and `y.IQ`.
+
+# Mutating joins: left join N = 12 rows
+
+```{r}
+left_join(day1, day2, by = 'ID') %>% 
+        kable('html') %>% 
+        kable_styling(font_size = 20)
+```
+
+
+# Mutating joins: right join N = 12
+```{r}
+right_join(day1, day2, by = 'ID') %>% 
+        kable('html') %>% 
+        kable_styling(font_size = 20)
+```
+
+# Mutating joins: inner join N = 7
+
+```{r}
+inner_join(day1, day2, by = 'ID') %>% 
+        kable('html') %>% 
+        kable_styling(font_size = 20)
+```
+
+
+# Mutating joins: full join N = 17
+```{r}
+full_join(day1, day2, by = 'ID', booktabs = T) %>% 
+        kable('html') %>% 
+        kable_styling(font_size = 20)
+```
+
+
+# Filtering joins: semi join N = 7
+
+```{r}
+semi_join(day1, day2, by = 'ID') %>% 
+        kable('html') %>% 
+        kable_styling(font_size = 20)
+```
+
+# Filtering joins: anti join N = 5
+
+```{r}
+anti_join(day1, day2, by = 'ID') %>% 
+        kable('html') %>% 
+        kable_styling(font_size = 20)
+```
+
+
+# Set operations: intersect N = 0
+
+```{r}
+intersect(day1, day2, by = 'ID') %>% 
+        kable('html') %>% 
+        kable_styling(font_size = 20)
+```
+
+# Set operations: union N = 24
+
+```{r}
+union(day1, day2, by = 'ID') %>% 
+        kable('html') %>% 
+        kable_styling(font_size = 20)
+```
+
+# Set operations: setdiff N = 12
+
+```{r}
+setdiff(day1, day2, by = 'ID') %>% 
+        kable("html") %>% 
+        kable_styling(font_size = 20)
+```
+
+
+# dplyr versus ...
+
+##### Base R: `merge`
+
+* Slower than `dplyr`
+* Can't handle lists of data frames
+* `rbind` returns an error when columns are not identical 
+* `dplyr`'s `.id` argument allows you to specify a name for each source data frame
+
+##### Data.table: `data.table::merge` 
+
+While this point is contentious, if you've been a long standing tidyversalist, then you might find `data.table::merge` syntax more difficult to learn. Some people prefer `dplyr` because
+
+* tells you what keys you're merging of (if not supplied)
+* rows are kept in existing order
+* also works with database tables 
+
+
+# Benchmarking exercise
+![benchmark](graphs/benchmark.png)
+
+# When joining can get tricky... 
+
+- Joining columns having the same name but different encoding (UTF-8 vs. Latin)
+- Joining columns having different storage types (factors, integers, bit64, dates)
+
+
+The consequences can vary, but dplyr might 
+
+- Set all the values to NA
+- Coerce a column to another type (e.g. factor to character)
+- Fail to recognize columns that match resulting in rows being dropped
+
+# More!
+
+
+
+There are additional types of joins not covered here such as rolling joins or cross joins
+
+Rolling joins are used in circumstances where you want to join observations based on logical arguments (i.e. range of date). 
+
+Cross joins are used when we do not have a key on which we wish we match, rather we are simply returns every single combination of rows between two data frames. 
+
+If you want to join 3 or more tables, go check out how a `list` and `reduce` from `base R` or `purrr::reduce` can help you.
+
+
+
