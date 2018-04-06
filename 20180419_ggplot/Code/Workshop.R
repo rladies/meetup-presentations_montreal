@@ -1,7 +1,7 @@
 #If you haven't already, please follow the instructions in setup.md before proceeding!
 
 #Read in the first dataset
-BlackWhite_results <- read.csv("./BlackWhite_results copy.csv")
+BlackWhite_results <- read.csv("./Data/BlackWhite_results.csv")
 
 #Let's first use the viewer to look at these data.
 # 1. Click the data icon next to BlackWhite_results in the environment tab
@@ -278,7 +278,7 @@ names(data.females)
 #SECTION 3: ANOTHER DATASET, ANOTHER DATA VISUALIZATION
 
 #Here is some data on global cesarean delivery rates
-CS.data <- read.csv("./BlackWhite_results copy.csv")
+CS.data <- read.csv("./Data/Cesarean.csv")
 #Check out CS.data using some of the commands we learned earlier.
 #There is a variable called "X2006". This variable is the gross domestic product in 2006 for the corresponding country.
 #Let's use the dplyr function rename() to give this variable a better name.
