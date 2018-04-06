@@ -12,6 +12,7 @@
 | Date  | Time  | Topic  | Type  | Place  | Slides  |
 |---|---|---|---|---|---|
 | March 15, 2018 | 6 pm  | Kickoff & lightning talks  | Kickoff  | [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2)   | [dplyr for data joins](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/joining.pdf), [rvest scraping](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/rvest-scraping.R), [rvest slides](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/rvest-slides.pdf), [dplyr for data manipulation](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/intro-to-dplyr.md), [plotly setup](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/plotly_setup-ex.R), [plotly js](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/plotly_js-ex.R), [plotly ggplotly](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/plotly_ggplotly-ex.R), [plotly animate](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/plotly_animate-ex.R)|
+| April 19, 2018 | 6 pm | ggplot2 | Workshop | McGill (exact location TBD) | coming soon! |
 
 ## Speakers
 R-Ladies lives through its participants. We *ALWAYS* need speakers for meetups! Please get in touch with us through our [meetup page](https://www.meetup.com/rladies-montreal/)
