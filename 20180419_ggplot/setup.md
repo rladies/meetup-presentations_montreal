@@ -14,6 +14,6 @@
 
 4. If RStudio is open, close it. Launch RStudio by opening the .Rproj file. On Mac, you’ll see that the RStudio window has listed the project’s directory at the top. Look in the File Viewer panel and see the files you downloaded. Type getwd() in the code console. Notice the pathway points to your folder.
 
-5. Open the Lecture file in RStudio by selecting it from the file list.
+5. Open the Workshop file in RStudio by selecting it from the file list.
 
 6. During the workshop, we will follow the instructions in the R script to learn how to use dplyr, ggplot2, and plotly. A copy of the solutions will be added to this folder after the workshop.
