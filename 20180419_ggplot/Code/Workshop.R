@@ -277,9 +277,8 @@ names(data.females)
 
 #SECTION 3: ANOTHER DATASET, ANOTHER DATA VISUALIZATION
 
-#I previously saved the R data.frame "CS.data" inside R. We can reload it using the load() command:
-load("./CS.Rdata")
-#Notice that CS.data has been added to the Global Environment.
+#Here is some data on global cesarean delivery rates
+CS.data <- read.csv("./BlackWhite_results copy.csv")
 #Check out CS.data using some of the commands we learned earlier.
 #There is a variable called "X2006". This variable is the gross domestic product in 2006 for the corresponding country.
 #Let's use the dplyr function rename() to give this variable a better name.
