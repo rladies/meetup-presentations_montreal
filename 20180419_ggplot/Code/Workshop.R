@@ -41,7 +41,7 @@ rm(cleaned.data)
 #and recreate it using the piping operator:
 cleaned.data <- BlackWhite_results %>% select(-X, -X.1, -X.2)
 
-#We can View() cleaned.data or remind ourselve of the variables contained in the data frame:
+#We can View() cleaned.data or remind ourselves of the variables contained in the data frame:
 names(cleaned.data)
 
 #let's examine some of the variables a little more closely
@@ -92,8 +92,6 @@ cleaned.data %>%
 ######################################################################################################
 #What we've learned so far:
 
-#INITIALIZING VARIABLES
-
 #IMPORTING DATA
 #read.csv() for importing .csv data. There is also read.table for .txt data
 #to read data exported from state you will need to load the foreign library and use read.dta()
@@ -118,6 +116,10 @@ quantile(Alabama.data$LE_black_mean, 0.3)
 cleaned.data %>% 
   group_by(sex, state) %>%
   summarise(num.per.strata = n())
+#Alternatively, we could have written:
+cleaned.data %>% 
+  group_by(sex, state) %>%
+  tally()
 #This is really useful if you have panel data and want to know the number of visits per patient, say.
 #Or, before running a multi-level model, you could check the cluster sizes for all your clusters
 
@@ -133,7 +135,7 @@ library(ggplot2) #remember to first install the package if you haven't done so a
 #this function creates a plotting window that reflects the range of X and Y in the data.frame
 ggplot(data = Alabama.data, aes(x = year, y = LE_white_mean))
 
-#we need to tell it how th plot the time series of the mean life expectancy for whites.
+#we need to tell it how to plot the time series of the mean life expectancy for whites.
 #Let's start by plotting points:
 ggplot(data = Alabama.data, aes(x = year, y = LE_white_mean)) +    
   geom_point()                                  
@@ -171,7 +173,6 @@ ggplot(data = Alabama.data, aes(x = year, y = LE_white_mean)) +
 #contains the Alabama data for both males and females. Call the new dataset Alabama.both.genders:
 
 #SOLUTION:
-
 
 #Let's plot the Alabama data using the previous code: 
 ggplot(data = Alabama.both.genders, aes(x = year, y = LE_white_mean)) + 
