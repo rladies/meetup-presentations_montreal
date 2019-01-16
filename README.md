@@ -4,7 +4,7 @@
 # R-Ladies Montreal
 
 ## Upcoming events
-:date: 17 May 2018, **Topic to be determined** 
+:date: January 17, 2019, **Introduction to dplyr** 
 
 :point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/events/fxvxlpyxgbzb/)  
 
@@ -14,14 +14,21 @@
 | March 15, 2018 | 6 pm  | Kickoff & lightning talks  | Kickoff  | [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2)   | [intro](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/rladies_intro.pdf), [dplyr for data joins](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/joining.pdf), [rvest scraping](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/rvest-scraping.R), [rvest slides](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/rvest-slides.pdf), [dplyr for data manipulation](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/intro-to-dplyr.md), [plotly setup](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/plotly_setup-ex.R), [plotly js](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/plotly_js-ex.R), [plotly ggplotly](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/plotly_ggplotly-ex.R), [plotly animate](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180315_Kickoff/plotly_animate-ex.R)|
 | April 19, 2018 | 6 pm | ggplot2 | Workshop | [La gare](https://goo.gl/maps/Cai6NXkMd5B2) | [Announcements](https://docs.google.com/document/d/1dcwCYhlmb1EDHl-XCbtb_Mcr3yp-tGRluQWhCJ82w5M/edit?usp=sharing), [setup instructions](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180419_ggplot/setup.md), [workshop code](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180419_ggplot/Code/Workshop.R), [datasets](https://github.com/rladies/meetup-presentations_montreal/blob/master/20180419_ggplot/Data) |
 | May 17, 2018 | 6 pm | R markdown | Webinar viewing | [District 3](https://goo.gl/maps/hjFywveKB7k) |[materials to download in advance](https://github.com/rstudio/webinars/tree/master/25-Notebooks) |
+| September 20, 2018 | 6 pm | Welcome Back | [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | Planning session |
+| October 18, 2018 | 6 pm | Introduction to Shiny |[materials to download in advance](add real link) | [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | Planning session |
+
+
+Welcome back!
 
 ## Speakers
 R-Ladies lives through its participants. We *ALWAYS* need speakers for meetups! Please get in touch with us through our [meetup page](https://www.meetup.com/rladies-montreal/)
 
 ## Further information
-Organisers are: [Corinne Riddell](corinneriddell.com), [Kathryn Morrison](https://www.precision-analytics.ca/ourteam/), and [Erika Braithwaite](https://www.precision-analytics.ca/ourteam/).
+Organisers are: [Kathryn Morrison](https://www.precision-analytics.ca/ourteam/), and [Erika Braithwaite](https://www.precision-analytics.ca/ourteam/).
 
-Checkout our [Meetup page](https://www.meetup.com/rladies-montreal/).
+A big thanks to our corporate sponsors at [Upgrade](https://www.upgrade.com/)
+
+Checkout our [Meetup page](https://www.meetup.com/rladies-montreal/) for more info!.
 
 Follow us on [Twitter](https://twitter.com/RLadiesMTL).
 
