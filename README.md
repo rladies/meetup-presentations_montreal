@@ -35,7 +35,6 @@ R-Ladies lives through its participants. We *ALWAYS* need speakers for meetups! 
 ## Further information
 Organisers are: [Kathryn Morrison](https://www.precision-analytics.ca/ourteam/), and [Erika Braithwaite](https://www.precision-analytics.ca/ourteam/).
 
-A big thanks to our corporate sponsors at [Upgrade](https://www.upgrade.com/)
 
 Checkout our [Meetup page](https://www.meetup.com/rladies-montreal/) for more info!.
 
