@@ -45,5 +45,4 @@ We follow the [Code of Conduct](https://github.com/rladies/starter-kit/wiki/Code
 
 ## Sponsors
 
-A big thank you to our corporate sponsors at [<img src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/upgrade_logo.png" height = "40">](https://plot.ly/) for providing the food and drink, and [<img src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/Plotly-logo.png" height = "40">](https://plot.ly/) for providing the space!
-https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/Plotly-logo.png
+A big thank you to our corporate sponsors at [<img src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/upgrade_logo.png" height = "40">](https://plot.ly/) for providing the food and drink, and [<img src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/Plotly-logo.png" height = "30">](https://plot.ly/) for providing the space!
