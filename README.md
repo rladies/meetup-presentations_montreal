@@ -5,9 +5,14 @@
 
 ## Upcoming events
 :date: January 17, 2019, **Introduction to dplyr** 
+
 :alarm_clock: 6pm
+
 :round_pushpin: [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) 
-materials to download in advance](addline) 
+
+:computer: materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20190117_dplyr) 
+
+
 
 
 :point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/events/fxvxlpyxgbzb/)  
