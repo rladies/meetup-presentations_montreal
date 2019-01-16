@@ -4,13 +4,13 @@
 # R-Ladies Montreal
 
 ## Upcoming events
-:date: January 17, 2019, **Introduction to dplyr** 
+:date: January 17, 2019 **Introduction to dplyr** 
 
 :alarm_clock: 6pm
 
-:round_pushpin: [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) 
+:round_pushpin: 5555 Ave de Gaspé Montreal QC H2T 2T3 [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) 
 
-:computer: materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20190117_dplyr) 
+:computer: [materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20190117_dplyr) 
 
 
 
