@@ -8,7 +8,7 @@
 
 :alarm_clock: 6pm
 
-:round_pushpin: 5555 Ave de Gaspé Montreal QC H2T 2T3 [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) 
+:round_pushpin: [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2)  5555 Ave de Gaspé Montreal QC H2T 2T3 
 
 :computer: [materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20190117_dplyr) 
 
@@ -35,10 +35,13 @@ R-Ladies lives through its participants. We *ALWAYS* need speakers for meetups! 
 ## Further information
 Organisers are: [Kathryn Morrison](https://www.precision-analytics.ca/ourteam/), and [Erika Braithwaite](https://www.precision-analytics.ca/ourteam/).
 
-A big thanks to our corporate sponsors at [Upgrade](https://www.upgrade.com/)
 
 Checkout our [Meetup page](https://www.meetup.com/rladies-montreal/) for more info!.
 
 Follow us on [Twitter](https://twitter.com/RLadiesMTL).
 
 We follow the [Code of Conduct](https://github.com/rladies/starter-kit/wiki/Code-of-Conduct) and encourage participants to read [Rules & Guidelines of R-Ladies](https://github.com/rladies/starter-kit/blob/master/R-Ladies_RulesGuidelines.pdf).
+
+## Sponsors
+
+A big thank you to our corporate sponsors at [<img src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/upgrade_logo.png" height = "40">](https://plot.ly/) for providing the food and drink, and [<img src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/Plotly-logo.png" height = "30">](https://plot.ly/) for providing the space!
