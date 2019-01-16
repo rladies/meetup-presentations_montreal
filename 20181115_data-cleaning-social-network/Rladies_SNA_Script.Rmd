@@ -1,0 +1,155 @@
+---
+title: "Mini Introductory Workshop to SNA"
+author: "Jennifer Yu"
+date: "November 3, 2018"
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(
+	echo = TRUE,
+	message = TRUE,
+	warning = TRUE
+)
+```
+
+# Description 
+
+In this mini workshop to social network analysis, we will learn on how to get data into R, to illustrate a network graph and to calculate some network measures.
+
+# Installing packages 
+```{r}
+install.packages("igraph") # install the igraph package
+
+library(igraph) # load the igraph package
+
+```
+
+# Setting up the working directory 
+```{r}
+setwd("C:/Users/Jennifer Yu/RLadies/SNA") # Change for the directory where you saved the files
+
+```
+
+# Importing databases 
+```{r}
+nodes <- read.csv("Rladies_SNA_nodes.csv", stringsAsFactors = F) # database containing the nodes' attributes 
+adj.matrix <- read.csv("Rladies_SNA_edges.csv", stringsAsFactors = F) # database containing the adjacency matrix, i.e. the connections between the nodes 
+
+```
+
+# Explore databases 
+```{r}
+nodes # database with the characteristics of the nodes, the attendees of last meetup of R-ladies
+
+adj.matrix # database on the edges (ties) of the network 
+
+```
+
+# Creating the network graph 
+
+## Create the backbone of the network graph with the data on edges (ties)
+```{r}
+class(adj.matrix) # Check whether our adjacency matrix is a matrix
+
+adj.mat  <- as.matrix(adj.matrix[,-1]) # coerces the data set as a matrix if not already a matrix
+rownames(adj.mat) <- colnames(adj.mat)
+
+rladies.graph <- graph.adjacency(adj.mat, mode="directed", weighted = TRUE, diag = FALSE) # this will create an 'igraph object'
+
+rladies.graph # Explore the network graph
+
+summary(rladies.graph) # Let's say we just want to see a small summary of the network graph, and we don't want to see all the ties
+
+V(rladies.graph) # Look at the vertices/nodes
+
+E(rladies.graph) # Look at the edges/ties
+
+```
+
+## Add node attributes 
+```{r}
+vertex_attr(rladies.graph, "ID", index = V(rladies.graph)) <- nodes$ID # Add the ID label to all nodes 
+
+vertex_attr(rladies.graph, "Season", index = V(rladies.graph)) <- nodes$season # Add the favorite season for each node
+
+vertex_attr(rladies.graph, "Dining", index = V(rladies.graph)) <- nodes$restaurant # Add the number of times went out dining for each node
+
+vertex_attr(rladies.graph, "Personality", index = V(rladies.graph)) <- nodes$extroversion # Add the personality type for each node
+
+rladies.graph # Take a look at the network graph now
+
+```
+
+# Plotting the network graph 
+
+## Add some aesthetic features to the network graph
+```{r}
+rladies.plot <- rladies.graph # Create a new graph just for the plotting, unnecessary step, just to see things after
+
+V(rladies.plot)[V(rladies.plot)$Season == "spring"]$color <- "pink" # Add the colour for the season
+V(rladies.plot)[V(rladies.plot)$Season == "summer"]$color <- "green3"
+V(rladies.plot)[V(rladies.plot)$Season == "fall"]$color <- "orange"
+V(rladies.plot)[V(rladies.plot)$Season == "winter"]$color <- "skyblue"
+V(rladies.plot)[V(rladies.plot)$Season == "missing"]$color <- "grey50"
+
+V(rladies.plot)$frame.color <- NA # remove frame color of nodes
+
+V(rladies.plot)$size <- V(rladies.graph)$Dining # Add the size of the nodes for number of times dinning out
+
+
+V(rladies.plot)[V(rladies.plot)$Personality == "extrovert"]$shape <- "star" # Add the node shape for personality type
+V(rladies.plot)[V(rladies.plot)$Personality == "ambivert"]$shape <- "circle"
+V(rladies.plot)[V(rladies.plot)$Personality == "introvert"]$shape <- "square"
+V(rladies.plot)[V(rladies.plot)$Personality == "missing"]$shape <- "circle"
+
+V(rladies.plot)$label <- NA #remove node labelling
+
+
+E(rladies.plot)$width <- E(rladies.graph)$weight^2 # add edge width
+
+E(rladies.plot)$arrow.size <- 0.5 # specify arrow size
+
+```
+
+## Plotting! 
+```{r}
+plot(rladies.graph) # plotting the graph without any aesthetics
+
+plot(rladies.plot) # Simple plotting with aesthetics
+
+plot(rladies.plot, layout = layout.circle) # circle layout
+
+plot(rladies.plot, layout = layout.fruchterman.reingold) # another layout
+
+```
+
+
+# Calculating some measures  
+From the summary of the network graph, we can see the network size (number of nodes) and the number of edges (ties)
+
+
+## Network density
+```{r}
+
+edge_density(rladies.graph, loops = FALSE) # we don't have loops in the network, so FALSE for loops
+
+```
+
+## Degree centrality 
+```{r}
+centr_degree(rladies.graph, mode = c("all"), loops = FALSE, normalized = FALSE) # I want all the ties, I don't have loops and I don't want the proportion 
+
+centr_degree(rladies.graph, mode = c("out"), loops = FALSE, normalized = FALSE) # Here the number of people that each person had nominated 
+
+centr_degree(rladies.graph, mode = c("in"), loops = FALSE, normalized = FALSE) # Here the number of times each person has been nominated
+
+```
+
+There are many things to play with, so feel free to explore!
+
+
+
+
