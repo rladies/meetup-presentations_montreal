@@ -1,0 +1,278 @@
+---
+title: "Introduction to dplyr"
+author: "Tugba Ozturk"
+# <br /> is an HTML line break
+#date: "2018/12/07"# (updated: `r Sys.Date()`)"
+output:
+  xaringan::moon_reader:
+    css: ["default", rladies, rladies-fonts]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      
+
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+```
+
+css: center,middle
+```{r, out.width = "200px", echo=FALSE, fig.align='center'}
+knitr::include_graphics("figures/hex-dplyr.png")
+```
+
+--
+### `dplyr` package is a set of tools using split-apply-combine strategy. Here is a list of important `dplyr` verbs:
+
+- `arrange()` for changing the ordering of the rows.
+- `select()` for selecting one or more variables.
+- `mutate()` for creating a new variable as a function of existing variables.
+- `filter()` for row-wise subsetting.
+- `summarise()` for reducing multiple values down to a single summary.
+- `group_by()` for group operations.
+
+---
+# Installation
+
+--
+
+```{r, echo=TRUE, eval=FALSE}
+install.packages("dplyr") #to install
+library("dplyr") #to load
+```
+
+
+```{r, echo=FALSE, eval=TRUE}
+library("dplyr") #to load
+```
+---
+
+# Data set
+
+We will use a data set called `Orange` having 35 rows and 3 columns of records of the growth of orange trees. 
+
+--
+
+```{r, echo=TRUE, eval=TRUE}
+head(Orange)
+```
+
+.footnote[Click [here](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Orange.html) for more information about `Orange`.] 
+
+---
+
+# arrange(dataframe, colname)
+
+To order the rows by a particular column:
+
+--
+```{r, echo=TRUE, eval=TRUE}
+head(arrange(Orange, circumference))
+```
+--
+
+```{r, tidy=TRUE, echo=TRUE, eval=TRUE}
+{{head(arrange(Orange, desc(circumference)))}}
+```
+---
+
+# arrange(dataframe, colname)
+
+Did we **actually** change the data frame?
+--
+
+
+No, we did not. To make the effect of `arrange` function permenant:
+
+```{r, echo=TRUE, eval=FALSE}
+Orange <- arrange(Orange, circumference)
+```
+
+---
+
+# Pipe Operator (%>%)
+<!-- slide 7 --> 
+`dplyr` imports this operator from `magrittr`. 
+**` %>% ` ** pipes the output of one function to the input of another function. 
+--
+
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% arrange(circumference) %>% head(4)
+```
+--
+
+In the **descending** order:
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% arrange(desc(circumference)) %>% head(4)
+```
+
+
+---
+# select()
+
+To select a particular column:
+
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% select(circumference) %>% head(3)
+```
+
+--
+Additional `options`:
+
+
+- `ends_with()` to select columns that end with a character string
+- `contains()` to select columns that contain a character string
+- `matches()` to select columns that match a regular expression
+- `one_of()` to select columns names that are from a group of names
+
+--
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% select(starts_with("a")) %>% head(3)
+Orange %>% select(contains("e")) %>% head(3)
+```
+
+---
+# select()
+To select a column and save it as a **vector**:
+--
+```{r, echo=TRUE, eval=TRUE}
+ages <- as.vector(Orange %>% select(age))
+ages <- Orange %>% .$age
+ages <- Orange %>% pull(age)
+```
+
+--
+To  reorder the columns:
+--
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% select(circumference,age,Tree) %>% head()
+```
+.footnote[Add a minus before the column name to remove it!]
+---
+
+# mutate()
+<!-- Slide 9 --> 
+To create new columns:
+--
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% mutate(radius=round(circumference/(2*pi),1)) %>% head()
+```
+--
+Use `transmute()` to get rid of the old variables:
+--
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% transmute(radius=round(circumference/(2*pi),1)) %>% head()
+```
+---
+
+# filter()
+<!-- slide 11 --> 
+To select rows: 
+--
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% filter(circumference==100) %>% head()
+Orange %>% filter(circumference>=100) %>% head(4)
+```
+---
+# filter()
+<!-- slide 12 --> 
+To select rows with **multiple** conditions:
+--
+
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% filter(circumference < 100 & age > 500 ) %>% head(3)
+```
+--
+If you are interested in the `Tree` column:
+
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% filter(circumference < 100 & age > 500 ) %>% select(Tree) %>% head()
+```
+
+---
+background-image: url("figures/code.png")
+background-size: 100px
+background-position: 90% 7%
+# Practice
+<!-- slide 13 --> 
+```{r, echo=FALSE}
+knitr::kable(head(Orange), format = 'html')
+```
+
+- Create a new column which is the ratio of area to circumference and name it as growth
+- Find out the age corresponds to the minimum of value in the growth column for the third tree.  
+
+--
+```{r, echo=TRUE, eval=TRUE}
+answer <- Orange %>% mutate(growth=circumference/age) %>% 
+  filter(Tree==3) %>% filter(growth==min(growth))
+print(answer$age)
+```
+
+---
+
+# summarize()
+To collapse a data frame to a single value:
+
+--
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% summarize(r_ave=mean(circumference/(2*pi)))
+```
+
+--
+In case of `NA` values, use the following: `summarize(r_ave=mean(circumference/(2*pi),na.rm = TRUE))`.
+
+--
+
+`summarize()` is often used with `group_by`:
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% group_by(Tree) %>% head(2)
+```
+    
+---
+# summarize() and group_by()
+
+An example combining both:
+
+```{r, echo=TRUE, eval=TRUE}
+Orange %>% group_by(Tree) %>% summarize(count=n(), 
+   age_ave=mean(age), cir_ave=mean(circumference))
+```
+    
+--
+
+- `n()` calculates the number of observations (rows) in the group.
+--
+
+- Other aggregate functions which can be used: `max()`, `mean()`, `median()`, `min()`, `sd()`, `sum()` and the interquartile range (`IQR()`).
+
+
+---
+
+# A lesser known function: `full_join()`
+
+```{r, echo=FALSE}
+df <- data.frame(Tree=unique(Orange$Tree), Country=c("US", "CAN", "FRA", "CAN", "UK"))
+knitr::kable(list(head(Orange,5),df), format = 'html')
+```
+--
+```{r, echo=TRUE, eval=TRUE}
+full_join(Orange,df) %>% head(3)
+```
+--
+Check [the documentation](https://dplyr.tidyverse.org/articles/two-table.html) for two table verbs.
+---
+
+
+# Acknowledgment
+
+.left[Here is a list of the resources I've used for this talk:
+
+- The official `dplyr` [documentation](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html)
+
+- Jenny Bryan's [STAT 545 course page](http://stat545.com/block009_dplyr-intro.html)
+
+- Another [course page](http://genomicsclass.github.io/book/pages/dplyr_tutorial.html)]
