@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Introduction to dplyr</title>
+    <meta charset="utf-8">
+    <meta name="author" content="Tugba Ozturk" />
+    <link href="libs/remark-css/default.css" rel="stylesheet" />
+    <link href="libs/remark-css/rladies.css" rel="stylesheet" />
+    <link href="libs/remark-css/rladies-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Introduction to dplyr
+### Tugba Ozturk
+
+---
+
+
+
+
+css: center,middle
+&lt;img src="figures/hex-dplyr.png" width="200px" style="display: block; margin: auto;" /&gt;
+
+--
+### `dplyr` package is a set of tools using split-apply-combine strategy. Here is a list of important `dplyr` verbs:
+
+- `arrange()` for changing the ordering of the rows.
+- `select()` for selecting one or more variables.
+- `mutate()` for creating a new variable as a function of existing variables.
+- `filter()` for row-wise subsetting.
+- `summarise()` for reducing multiple values down to a single summary.
+- `group_by()` for group operations.
+
+---
+# Installation
+
+--
+
+
+```r
+install.packages("dplyr") #to install
+library("dplyr") #to load
+```
+
+
+
+```
+## 
+## Attaching package: 'dplyr'
+```
+
+```
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+```
+
+```
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+```
+---
+
+# Data set
+
+We will use a data set called `Orange` having 35 rows and 3 columns of records of the growth of orange trees. 
+
+--
+
+
+```r
+head(Orange)
+```
+
+```
+##   Tree  age circumference
+## 1    1  118            30
+## 2    1  484            58
+## 3    1  664            87
+## 4    1 1004           115
+## 5    1 1231           120
+## 6    1 1372           142
+```
+
+.footnote[Click [here](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/Orange.html) for more information about `Orange`.] 
+
+---
+
+# arrange(dataframe, colname)
+
+To order the rows by a particular column:
+
+--
+
+```r
+head(arrange(Orange, circumference))
+```
+
+```
+##   Tree age circumference
+## 1    1 118            30
+## 2    3 118            30
+## 3    5 118            30
+## 4    4 118            32
+## 5    2 118            33
+## 6    5 484            49
+```
+--
+
+
+```r
+*head(arrange(Orange, desc(circumference)))
+```
+
+```
+##   Tree  age circumference
+## 1    4 1582           214
+## 2    4 1372           209
+## 3    2 1372           203
+## 4    2 1582           203
+## 5    4 1231           179
+## 6    5 1582           177
+```
+---
+
+# arrange(dataframe, colname)
+
+Did we **actually** change the data frame?
+--
+
+
+No, we did not. To make the effect of `arrange` function permenant:
+
+
+```r
+Orange &lt;- arrange(Orange, circumference)
+```
+
+---
+
+# Pipe Operator (%&gt;%)
+&lt;!-- slide 7 --&gt; 
+`dplyr` imports this operator from `magrittr`. 
+**` %&gt;% ` ** pipes the output of one function to the input of another function. 
+--
+
+
+```r
+Orange %&gt;% arrange(circumference) %&gt;% head(4)
+```
+
+```
+##   Tree age circumference
+## 1    1 118            30
+## 2    3 118            30
+## 3    5 118            30
+## 4    4 118            32
+```
+--
+
+In the **descending** order:
+
+```r
+Orange %&gt;% arrange(desc(circumference)) %&gt;% head(4)
+```
+
+```
+##   Tree  age circumference
+## 1    4 1582           214
+## 2    4 1372           209
+## 3    2 1372           203
+## 4    2 1582           203
+```
+
+
+---
+# select()
+
+To select a particular column:
+
+
+```r
+Orange %&gt;% select(circumference) %&gt;% head(3)
+```
+
+```
+##   circumference
+## 1            30
+## 2            58
+## 3            87
+```
+
+--
+Additional `options`:
+
+
+- `ends_with()` to select columns that end with a character string
+- `contains()` to select columns that contain a character string
+- `matches()` to select columns that match a regular expression
+- `one_of()` to select columns names that are from a group of names
+
+--
+
+```r
+Orange %&gt;% select(starts_with("a")) %&gt;% head(3)
+```
+
+```
+##   age
+## 1 118
+## 2 484
+## 3 664
+```
+
+```r
+Orange %&gt;% select(contains("e")) %&gt;% head(3)
+```
+
+```
+##   Tree age circumference
+## 1    1 118            30
+## 2    1 484            58
+## 3    1 664            87
+```
+
+---
+# select()
+To select a column and save it as a **vector**:
+--
+
+```r
+ages &lt;- as.vector(Orange %&gt;% select(age))
+```
+
+--
+To  reorder the columns:
+--
+
+```r
+Orange %&gt;% select(circumference,age,Tree) %&gt;% head()
+```
+
+```
+##   circumference  age Tree
+## 1            30  118    1
+## 2            58  484    1
+## 3            87  664    1
+## 4           115 1004    1
+## 5           120 1231    1
+## 6           142 1372    1
+```
+.footnote[Add a minus before the column name to remove it!]
+---
+
+# mutate()
+&lt;!-- Slide 9 --&gt; 
+To create new columns:
+--
+
+```r
+Orange %&gt;% mutate(radius=round(circumference/(2*pi),1)) %&gt;% head()
+```
+
+```
+##   Tree  age circumference radius
+## 1    1  118            30    4.8
+## 2    1  484            58    9.2
+## 3    1  664            87   13.8
+## 4    1 1004           115   18.3
+## 5    1 1231           120   19.1
+## 6    1 1372           142   22.6
+```
+--
+Use `transmute()` to get rid of the old variables:
+--
+
+```r
+Orange %&gt;% transmute(radius=round(circumference/(2*pi),1)) %&gt;% head()
+```
+
+```
+##   radius
+## 1    4.8
+## 2    9.2
+## 3   13.8
+## 4   18.3
+## 5   19.1
+## 6   22.6
+```
+---
+
+# filter()
+&lt;!-- slide 11 --&gt; 
+To select rows: 
+--
+
+```r
+Orange %&gt;% filter(circumference==100) %&gt;% head()
+```
+
+```
+## [1] Tree          age           circumference
+## &lt;0 rows&gt; (or 0-length row.names)
+```
+
+```r
+Orange %&gt;% filter(circumference&gt;=100) %&gt;% head(4)
+```
+
+```
+##   Tree  age circumference
+## 1    1 1004           115
+## 2    1 1231           120
+## 3    1 1372           142
+## 4    1 1582           145
+```
+---
+# filter()
+&lt;!-- slide 12 --&gt; 
+To select rows with **multiple** conditions:
+--
+
+
+```r
+Orange %&gt;% filter(circumference &lt; 100 &amp; age &gt; 500 ) %&gt;% head(3)
+```
+
+```
+##   Tree age circumference
+## 1    1 664            87
+## 2    3 664            75
+## 3    5 664            81
+```
+--
+If you are interested in the `Tree` column:
+
+
+```r
+Orange %&gt;% filter(circumference &lt; 100 &amp; age &gt; 500 ) %&gt;% select(Tree) %&gt;% head()
+```
+
+```
+##   Tree
+## 1    1
+## 2    3
+## 3    5
+```
+
+---
+background-image: url("figures/code.png")
+background-size: 100px
+background-position: 90% 7%
+# Practice
+&lt;!-- slide 13 --&gt; 
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Tree &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; age &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; circumference &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 118 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 30 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 484 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 664 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 87 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1004 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 115 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1231 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1372 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 142 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+- Create a new column which is the ratio of area to circumference and name it as growth
+- Find out the age corresponds to the minimum of value in the growth column for the third tree.  
+
+--
+
+```r
+answer &lt;- Orange %&gt;% mutate(growth=circumference/age) %&gt;% 
+  filter(Tree==3) %&gt;% filter(growth==min(growth))
+print(answer$age)
+```
+
+```
+## [1] 1582
+```
+
+---
+
+# summarize()
+To collapse a data frame to a single value:
+
+--
+
+```r
+Orange %&gt;% summarize(r_ave=mean(circumference/(2*pi)))
+```
+
+```
+##      r_ave
+## 1 18.43924
+```
+
+--
+In case of `NA` values, use the following: `summarize(r_ave=mean(circumference/(2*pi),na.rm = TRUE))`.
+
+--
+
+`summarize()` is often used with `group_by`:
+
+```r
+Orange %&gt;% group_by(Tree) %&gt;% head(2)
+```
+
+```
+## # A tibble: 2 x 3
+## # Groups:   Tree [1]
+##   Tree    age circumference
+##   &lt;ord&gt; &lt;dbl&gt;         &lt;dbl&gt;
+## 1 1       118            30
+## 2 1       484            58
+```
+    
+---
+# summarize() and group_by()
+
+An example combining both:
+
+
+```r
+Orange %&gt;% group_by(Tree) %&gt;% summarize(count=n(), 
+   age_ave=mean(age), cir_ave=mean(circumference))
+```
+
+```
+## # A tibble: 5 x 4
+##   Tree  count age_ave cir_ave
+##   &lt;ord&gt; &lt;int&gt;   &lt;dbl&gt;   &lt;dbl&gt;
+## 1 3         7    922.    94  
+## 2 1         7    922.    99.6
+## 3 5         7    922.   111. 
+## 4 2         7    922.   135. 
+## 5 4         7    922.   139.
+```
+    
+--
+
+- `n()` calculates the number of observations (rows) in the group.
+--
+
+- Other aggregate functions which can be used: `max()`, `mean()`, `median()`, `min()`, `sd()`, `sum()` and the interquartile range (`IQR()`).
+
+
+---
+
+# A lesser known function: `full_join()`
+
+&lt;table class="kable_wrapper"&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Tree &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; age &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; circumference &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 118 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 30 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 484 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 58 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 664 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 87 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1004 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 115 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1231 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 120 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+   &lt;td&gt; 
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Tree &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Country &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; US &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; CAN &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; FRA &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; CAN &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; UK &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+ &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+--
+
+```r
+full_join(Orange,df) %&gt;% head(3)
+```
+
+```
+## Joining, by = "Tree"
+```
+
+```
+##   Tree age circumference Country
+## 1    1 118            30      US
+## 2    1 484            58      US
+## 3    1 664            87      US
+```
+--
+Check [the documentation](https://dplyr.tidyverse.org/articles/two-table.html) for two table verbs.
+---
+
+
+# Acknowledgment
+
+.left[Here is a list of the resources I've used for this talk:
+
+- The official `dplyr` [documentation](https://cran.r-project.org/web/packages/dplyr/vignettes/dplyr.html)
+
+- Jenny Bryan's [STAT 545 course page](http://stat545.com/block009_dplyr-intro.html)
+
+- Another [course page](http://genomicsclass.github.io/book/pages/dplyr_tutorial.html)]
+    </textarea>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function() {
+  var d = document, s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})();</script>
+
+<script>
+(function() {
+  var i, text, code, codes = document.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+})();
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
