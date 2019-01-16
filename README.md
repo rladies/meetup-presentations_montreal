@@ -43,5 +43,7 @@ Follow us on [Twitter](https://twitter.com/RLadiesMTL).
 
 We follow the [Code of Conduct](https://github.com/rladies/starter-kit/wiki/Code-of-Conduct) and encourage participants to read [Rules & Guidelines of R-Ladies](https://github.com/rladies/starter-kit/blob/master/R-Ladies_RulesGuidelines.pdf).
 
+## Sponsors
 Thanks to our corporate sponsors at [Upgrade](https://upgrade.com/) for providing food and drinks 
-<img src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/upgrade_logo.png" data-canonical-src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/upgrade_logo.png" height="50" />
+<img src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/upgrade_logo.png" data-canonical-src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/upgrade_logo.png" height="25" /> and [Plotly](https://plot.ly/) for provding the space
+
