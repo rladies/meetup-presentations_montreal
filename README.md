@@ -4,18 +4,22 @@
 # R-Ladies Montreal
 
 ## Upcoming events
-:date: January 17, 2019 **Introduction to dplyr** 
+:date: Thursday February 21, 2019 
+
+**Introduction to machine learning and deep learning - what we learned from RStudio Conf 2019**
+
+Kathryn Morrison, PhD will be presenting an introduction to deep learning using neural networks in R. Please come with the newest versions of R and RStudio pre-installed on your laptop. This is a basic workshop! Advanced statistical knowledge not required :) 
 
 :alarm_clock: 6pm
 
 :round_pushpin: [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2)  5555 Ave de Gaspé Montreal QC H2T 2T3 
 
-:computer: [materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20190117_dplyr) 
+:computer: Link to materials will be posted shortly. 
 
 
 
 
-:point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/events/fxvxlpyxgbzb/)  
+:point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/)  
 
 ## Past events
 | Date  | Time  | Topic  | Type  | Place  | Slides  |
@@ -26,7 +30,7 @@
 | September 20, 2018 | 6 pm | Welcome Back |  Planning session |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [slides](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20180920_RLadies-welcome) |
 | October 18, 2018 | 6 pm | Introduction to Shiny | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20181018_shiny) |
 | November 15, 2018 | 6 pm | Data cleaning & Introduction to Social Network Analysis | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20181115_data-cleaning) |
-
+| January 17, 2019 | 6 pm | Introduction to dplyr | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20190117_dplyr) |
 
 
 ## Speakers
