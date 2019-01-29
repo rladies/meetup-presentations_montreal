@@ -4,7 +4,10 @@
 # R-Ladies Montreal
 
 ## Upcoming events
-:date: Thursday February 21, 2019 **Introduction to machine learning and deep learning - what we learned from RStudio Conf 2019**
+:date: Thursday February 21, 2019 
+
+**Introduction to machine learning and deep learning - what we learned from RStudio Conf 2019**
+
 Kathryn Morrison, PhD will be presenting an introduction to deep learning using neural networks in R. Please come with the newest versions of R and RStudio pre-installed on your laptop. This is a basic workshop! Advanced statistical knowledge not required :) 
 
 :alarm_clock: 6pm
@@ -16,7 +19,7 @@ Kathryn Morrison, PhD will be presenting an introduction to deep learning using 
 
 
 
-:point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/events/fxvxlpyxgbzb/)  
+:point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/)  
 
 ## Past events
 | Date  | Time  | Topic  | Type  | Place  | Slides  |
