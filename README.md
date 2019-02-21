@@ -6,16 +6,19 @@
 ## Upcoming events
 :date: Thursday February 21, 2019 
 
-**Introduction to machine learning and deep learning - what we learned from RStudio Conf 2019**
+**Introduction to machine learning and deep learning: what we learned from RStudio Conf 2019**
 
 Kathryn Morrison, PhD will be presenting an introduction to deep learning using neural networks in R. Please come with the newest versions of R and RStudio pre-installed on your laptop. This is a basic workshop! Advanced statistical knowledge not required :) 
 
 :alarm_clock: 6pm
 
-:round_pushpin: [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2)  5555 Ave de Gaspé Montreal QC H2T 2T3 
+:round_pushpin: [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2)  5555 Ave de Gaspé, Suite 118, Montreal QC H2T 2T3 
 
-:computer: Link to materials will be posted shortly. 
+:office: To find us, come into 5555 Ave de Gaspé through the front doors and it's the first door on your left (suite 118). 
+The door says Plotly!
 
+:computer: [Link to materials](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190221_ML). 
+The R code contains everything you need to follow along with the workshop. 
 
 
 
