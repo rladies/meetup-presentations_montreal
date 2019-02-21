@@ -12,9 +12,9 @@ Kathryn Morrison, PhD will be presenting an introduction to deep learning using 
 
 :alarm_clock: 6pm
 
-:round_pushpin: [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2)  5555 Ave de Gaspé Montreal QC H2T 2T3 
+:round_pushpin: [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2)  5555 Ave de Gaspé, Suite 118, Montreal QC H2T 2T3 
 
-:office: To find us, come into 5555 Ave de Gaspé through the front doors and it's the first door on your left. 
+:office: To find us, come into 5555 Ave de Gaspé through the front doors and it's the first door on your left (suite 118). 
 The door says Plotly!
 
 :computer: [Link to materials](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190221_ML). 
