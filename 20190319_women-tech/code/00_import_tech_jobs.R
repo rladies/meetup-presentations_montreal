@@ -85,8 +85,8 @@ tech_jobs  %<>% rename(
 tech_jobs  %<>% mutate_all(funs(gsub("\\%", "", .))) %>% 
         mutate_at(vars(wf_total:change_paygap), funs(as.numeric)) 
 
+write.csv(tech_jobs, file = 'data/tech_jobs.csv')
 
-saveRDS(tech_jobs, file = 'data/tech_jobs.rds')
 
 
 
