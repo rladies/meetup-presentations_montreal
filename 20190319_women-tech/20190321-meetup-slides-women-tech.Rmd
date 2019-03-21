@@ -65,6 +65,7 @@ We collected data from several sources
 Package: Source: https://github.com/rladies/meetupr
 
 ```{r meetup-data, eval = FALSE, tidy = TRUE}
+# Get an API key from here: https://secure.meetup.com/meetup_api/key/
 Sys.setenv(MEETUP_KEY = "PASTE YOUR MEETUP KEY HERE")
 # Slow function so we don't hit the Meetup rate limit
 # From here: https://github.com/rladies/meetupr/issues/30#issuecomment-379900167
@@ -136,6 +137,15 @@ kable(keywords,
 ## Filtering tech groups
 
 ```{r filter-groups, eval = FALSE}
+# Fetch all groups matching the keywords above
+fetch_results <- map(keywords, slowly(safely(find_groups)))
+
+# meetupr returns a list with a result and error entry for each keyword
+# We only want the results, so pull those out and bind them into one table
+all_results <- fetch_results %>%
+  map("result") %>% 
+  bind_rows()
+
 # Filter tech groups, and unique (just in case)
 unique_groups = all_results %>% 
   select(id, name, urlname, created, members, status, city, state, country, who, organizer_id, organizer_name, category_id, category_name) %>%
