@@ -31,7 +31,7 @@
       // Author information
       presenters: [
             {
-        name:  'Erika Braithwaite' ,
+        name:  'Erika Braithwaite &amp; Chris Baltzer' ,
         company: '',
         gplus: '',
         twitter: '',
@@ -132,9 +132,15 @@ Institute for Statistics database, World Economic Forum Report, ILO,
 ILOSTAT database</pre></li>
 </ul>
 
+</article></slide><slide class=""><hgroup><h2>Download the data</h2></hgroup><article  id="download-the-data" class="flexbox vcenter">
+
+<p><a href='https://github.com/rladies/meetup-presentations_montreal/releases/download/20190321/data.zip' title=''>Click here for the data!</a></p>
+
 </article></slide><slide class=""><hgroup><h2>Scrape the meetup.com data</h2></hgroup><article  id="scrape-the-meetup.com-data" class="smaller">
 
 <p>Package: Source: <a href='https://github.com/rladies/meetupr' title=''>https://github.com/rladies/meetupr</a></p>
+
+<p>Get API here: <a href='https://secure.meetup.com/meetup_api/key/' title=''>https://secure.meetup.com/meetup_api/key/</a></p>
 
 <pre class = 'prettyprint lang-r'>Sys.setenv(MEETUP_KEY = &quot;PASTE YOUR MEETUP KEY HERE&quot;)
 # Slow function so we don&#39;t hit the Meetup rate limit From here:
@@ -218,7 +224,16 @@ get_group_events &lt;- function(group) {
 
 </article></slide><slide class=""><hgroup><h2>Filtering tech groups</h2></hgroup><article  id="filtering-tech-groups">
 
-<pre class = 'prettyprint lang-r'># Filter tech groups, and unique (just in case)
+<pre class = 'prettyprint lang-r'># Fetch all groups matching the keywords above
+fetch_results &lt;- map(keywords, slowly(safely(find_groups)))
+
+# meetupr returns a list with a result and error entry for each keyword
+# We only want the results, so pull those out and bind them into one table
+all_results &lt;- fetch_results %&gt;%
+  map(&quot;result&quot;) %&gt;% 
+  bind_rows()
+
+# Filter tech groups, and unique (just in case)
 unique_groups = all_results %&gt;% 
   select(id, name, urlname, created, members, status, city, state, country, who, organizer_id, organizer_name, category_id, category_name) %&gt;%
   filter(category_name == &quot;Tech&quot;) %&gt;%

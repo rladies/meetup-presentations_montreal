@@ -1,6 +1,6 @@
 ---
 title: "Women in tech meetups"
-author: "Erika Braithwaite"
+author: "Erika Braithwaite & Chris Baltzer"
 date: '2019-03-18'
 output: 
         ioslides_presentation:
@@ -17,7 +17,6 @@ knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 
 
 ```
-
 
 
 ## Welcome 
@@ -59,13 +58,19 @@ We collected data from several sources
         ILOSTAT database
 
 
+## Download the data {.flexbox .vcenter}
+
+
+[Click here for the data!](https://github.com/rladies/meetup-presentations_montreal/releases/download/20190321/data.zip)
 
 ## Scrape the meetup.com data {.smaller}
 
 Package: Source: https://github.com/rladies/meetupr
 
+Get API here: https://secure.meetup.com/meetup_api/key/
+
 ```{r meetup-data, eval = FALSE, tidy = TRUE}
-# Get an API key from here: https://secure.meetup.com/meetup_api/key/
+
 Sys.setenv(MEETUP_KEY = "PASTE YOUR MEETUP KEY HERE")
 # Slow function so we don't hit the Meetup rate limit
 # From here: https://github.com/rladies/meetupr/issues/30#issuecomment-379900167
