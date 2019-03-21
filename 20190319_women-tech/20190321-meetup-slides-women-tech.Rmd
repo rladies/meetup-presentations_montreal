@@ -1,6 +1,6 @@
 ---
 title: "Women in tech meetups"
-author: "Erika Braithwaite"
+author: "Erika Braithwaite & Chris Baltzer"
 date: '2019-03-18'
 output: 
         ioslides_presentation:
