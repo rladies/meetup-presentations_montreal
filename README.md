@@ -6,6 +6,8 @@
 ## Upcoming events
 :date: Thursday March 21, 2019 
 
+Next one is sometime, later..
+
 **Analyzing data from women's tech groups**
 
 Erika Braithwaite, PhD will be presenting some very cool publicly available data on women in tech meetups groups around the world. Please come with the newest versions of R and RStudio pre-installed on your laptop. This is a basic workshop! Advanced statistical knowledge not required :) 
