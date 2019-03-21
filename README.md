@@ -4,11 +4,11 @@
 # R-Ladies Montreal
 
 ## Upcoming events
-:date: Thursday February 21, 2019 
+:date: Thursday March 21, 2019 
 
-**Introduction to machine learning and deep learning: what we learned from RStudio Conf 2019**
+**Analyzing data from women's tech groups**
 
-Kathryn Morrison, PhD will be presenting an introduction to deep learning using neural networks in R. Please come with the newest versions of R and RStudio pre-installed on your laptop. This is a basic workshop! Advanced statistical knowledge not required :) 
+Erika Braithwaite, PhD will be presenting some very cool publicly available data on women in tech meetups groups around the world. Please come with the newest versions of R and RStudio pre-installed on your laptop. This is a basic workshop! Advanced statistical knowledge not required :) 
 
 :alarm_clock: 6pm
 
@@ -34,6 +34,7 @@ The R code contains everything you need to follow along with the workshop.
 | October 18, 2018 | 6 pm | Introduction to Shiny | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20181018_shiny) |
 | November 15, 2018 | 6 pm | Data cleaning & Introduction to Social Network Analysis | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20181115_data-cleaning) |
 | January 17, 2019 | 6 pm | Introduction to dplyr | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20190117_dplyr) |
+| February, 2019 | 6 pm | Introduction to Machine Learning | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190221_ML) |
 
 
 ## Speakers
