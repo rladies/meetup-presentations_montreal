@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-pacman::p_load(knitr, kableExtra, magrittr, tidyverse, countrycode, ggrepel, summarytools,  ggrepel, rworldmap, RColorBrewer, classInt, lubridate, rowr)
+pacman::p_load(knitr, kableExtra, magrittr, tidyverse, countrycode, ggrepel, summarytools,  ggrepel, rworldmap, RColorBrewer, classInt, lubridate, rowr, plotly)
 devtools::install_github("rladies/meetupr", force = TRUE)
 library(meetupr)
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
@@ -218,7 +218,6 @@ ggplot(groups_year, aes(x = year)) +
         plot.title = element_text(size=12, face="bold"))
 ```
 
-
 ## R-Ladies over time {.smaller}
 
 ```{r r-ladies, echo = FALSE, cache = TRUE}
@@ -325,7 +324,7 @@ ggplot(tech_jobs) +
         axis.title=element_text(size=12,face="bold"), 
         plot.title = element_text(size=12, face="bold"))
 
-#ggplotly(p)
+
 
 ```
 
@@ -336,7 +335,6 @@ When making maps, sometimes you have data that has 2-character, 3-character abbr
 There's a handy package called `rworldmaps` that allows you to convert almost any geographic spelling to maps other types. See `?codelist` for all options. 
 
 ```{r map-setup}
-
 
 
 # Match country names in survey to the country names in package
@@ -401,7 +399,6 @@ groups_jobs %<>%  left_join(tech_jobs) %>%
 ## Create plot of jobs and tech groups {.smaller}
 
 ```{r plot-groups-jobs, cache = TRUE}
-
 plot.groups = ggplot(data = groups_jobs, aes(x = groups.total, y = tech_perc_women)) +
         geom_point() + 
         geom_text_repel(aes(label=country.abb), size = 3) + 
@@ -415,13 +412,13 @@ plot.groups = ggplot(data = groups_jobs, aes(x = groups.total, y = tech_perc_wom
         theme(panel.grid.major.x = element_blank(),
         legend.position = 'none')
 ```
-
  
 ## Women's tech groups and jobs, by country
 
 ```{r, echo = FALSE, cache = TRUE}
 plot.groups
 ```
+
 
 ## Future directions
 I'd like to keep exploring the data and wanted to ask for your help. It might be a fun idea to have a R-Ladies Montreal group analysis on ... ourselves. All the code and data will be available on github. Please fork the repo and contribute in any way you'd like. The ultimate goal would be to write a short editorial and have it published in a journal. 
