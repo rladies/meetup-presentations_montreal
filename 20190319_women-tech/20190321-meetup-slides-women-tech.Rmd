@@ -1,0 +1,429 @@
+---
+title: "Women in tech meetups"
+author: "Erika Braithwaite"
+date: '2019-03-18'
+output: 
+        ioslides_presentation:
+        widescreen : true
+        smaller : true
+
+---
+
+```{r setup, include=FALSE}
+pacman::p_load(knitr, kableExtra, magrittr, tidyverse, countrycode, ggrepel, summarytools,  ggrepel, rworldmap, RColorBrewer, classInt, lubridate, rowr)
+devtools::install_github("rladies/meetupr", force = TRUE)
+library(meetupr)
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+
+
+```
+
+
+
+## Welcome 
+
+
+Welcome to today's [R-Ladies MTL session](https://github.com/rladies/meetup-presentations_montreal). As a passionate R-Lady, I feel incredibly connected to the community we're created here. Every month, we get to sit down, code, learn and share in an open and welcoming environment. 
+
+I get a lot out of these meetups. And you all keep coming, it means you do to. But I also wonder if we can see some macro level impacts of informal networking groups like this. 
+
+In today's session, I'll be presenting some data on women in tech groups (like this one) and wether there is evidence that they've had a impact on the lives of women in tech. 
+
+
+## Research question {.flexbox .vcenter}
+
+
+Are women in tech groups associated with more women in the tech industry and greater pay equity: An ecological analysis 
+
+
+# Method {.build}
+
+## Data sources
+We collected data from several sources
+
+
+* Meetup.com: RSVP all "women in tech" group events 
+
+        + Over 1 million meetup events from all over the world between 
+        2002 and 2019
+        
+        + Over 50k women in tech groups between 2002 to 2019
+        
+
+* Publicly avaialble global figures of women in tech, salaries, wage gaps 
+
+        + 41 countries, cross sectional. 
+        
+        + Data collected from global reports, eurostat, OECD, UNESCO’s 
+        Institute for Statistics database, World Economic Forum Report, ILO, 
+        ILOSTAT database
+
+
+
+## Scrape the meetup.com data {.smaller}
+
+Package: Source: https://github.com/rladies/meetupr
+
+```{r meetup-data, eval = FALSE, tidy = TRUE}
+Sys.setenv(MEETUP_KEY = "PASTE YOUR MEETUP KEY HERE")
+# Slow function so we don't hit the Meetup rate limit
+# From here: https://github.com/rladies/meetupr/issues/30#issuecomment-379900167
+slowly <- function(f, delay = 0.25) {
+  function(...) {
+    Sys.sleep(delay)
+    f(...)
+  }
+}
+# Wrap "get_events"" to link the parent group into the result data
+get_group_events <- function(group) {
+  events <- get_events(group, event_status = "past")
+  events <- events %>%
+    mutate(group_url = group)
+}
+```
+
+## Classify "tech" meetups {.smaller}
+
+```{r keywords, echo = FALSE, cache = TRUE}
+keywords1 = c("girls", 
+              "female", 
+              "big data", 
+              "blockchain", 
+              "machine learning", 
+              "artificial intelligence", 
+              "virtual reality", 
+              "augmented reality", 
+              "biotech", 
+              "data mining", 
+              "analytics") %>% data.frame()
+
+keywords2 = c("biotech", 
+              "data mining", 
+              "analytics",
+              "nerd",
+              "geek",
+              "code",
+              "develop",
+              "javascript",
+              "html",
+              "java", 
+              "nerd",
+              "geek") %>% data.frame()
+
+keywords3 = c("python",
+              "PHP",
+              "swift",
+              "ruby",
+              "web dev",
+              "webdev",
+              "game dev",
+              "gamedev",
+              "unity", 
+              "code",
+              "fintech") %>% data.frame()
+
+keywords = Map(cbind.fill, keywords1, keywords2, keywords3, MoreArgs = list(fill=NA)) %>% data.frame()
+
+```
+
+
+```{r see-keywords, echo = FALSE, results = 'asis'}
+kable(keywords, 
+      col.names = c("", "", "")) %>% kable_styling(font_size = 6)
+```
+
+
+## Filtering tech groups
+
+```{r filter-groups, eval = FALSE}
+# Filter tech groups, and unique (just in case)
+unique_groups = all_results %>% 
+  select(id, name, urlname, created, members, status, city, state, country, who, organizer_id, organizer_name, category_id, category_name) %>%
+  filter(category_name == "Tech") %>%
+  distinct()
+
+# Save results 
+write.csv(unique_groups, "groups.csv")
+```
+
+## Finding Events {.smaller}
+
+```{r find-event, eval = FALSE}
+unique_groups <- read.csv("groups.csv")
+
+# Split the requests into chunks in case we disconnect part way 
+chunk_size <- 100
+number_chunks <- as.integer(nrow(unique_groups) / chunk_size) + 1
+
+# Warning: This will take approximate 18 years 
+for (offset in 1:number_chunks) {
+  start <- 1 + (offset * chunk_size)
+  end <- (offset + 1) * chunk_size
+  print(offset)
+    
+  # Get the groups in the current chunk
+  group_urls <- unique_groups %>%
+    select(urlname) %>%
+    slice(start:end) 
+  
+  # Request all the events for each group 
+  event_results <- map(group_urls$urlname, slowly(safely(get_group_events)))
+  
+  # Guard against the end of the list 
+  if (length(event_results) > 0) {
+    filtered_results <- event_results %>%
+      map("result") %>%
+      bind_rows() %>%
+      select(id, name, local_date, yes_rsvp_count, group_url)
+  
+    # Save our progress to disk in case we error out somewhere
+    write_csv(filtered_results, path = "events.csv", append = TRUE)
+  }
+}
+```
+
+## Let's explore the data {.smaller}
+
+```{r read-groups, echo = FALSE}
+groups = read.csv('data/groups.csv')  %>% mutate(castedDate =  ymd_hms(created), 
+                   year = year(castedDate)) %>% 
+        select(name, members, city, state, country, who,year)
+
+```
+
+```{r, results = 'asis', echo = FALSE}
+kable(groups[1:7,]) %>% kable_styling(font_size = 6) 
+
+```
+
+
+## Women in tech groups over time
+
+```{r groups-year, echo = FALSE, cache = TRUE}
+groups_year = groups %>% 
+        group_by(year) %>% 
+        summarize(count = n(), tot_members = sum(members)) %>% 
+        filter(year < 2019)
+
+ggplot(groups_year, aes(x = year)) + 
+        geom_line(aes(y = count), color="blue", size = 1) + 
+        scale_x_continuous(breaks = pretty(groups_year$year, n = 10)) +
+        scale_y_continuous(breaks = pretty(groups_year$count, n = 8)) +
+        labs(x = "Year", 
+             y = "Number of women's tech groups", 
+             title = "Number of women's tech groups on meetup.com worldwide, 2002-2018") +
+        theme_bw() + 
+        theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12,face="bold"), 
+        plot.title = element_text(size=12, face="bold"))
+```
+
+
+## R-Ladies over time {.smaller}
+
+```{r r-ladies, echo = FALSE, cache = TRUE}
+rladies = groups %>% select(name, year, members) %>% 
+        filter(grepl("R.*Ladies", name, ignore.case = TRUE) & year < 2019) %>% 
+        group_by(year) %>% 
+        summarise(members = sum(members))
+
+ggplot(rladies, aes(x = year, y = members)) + 
+        geom_point() + 
+        geom_smooth() + 
+        scale_x_continuous(breaks = pretty(rladies$year, n = 8)) +
+        scale_y_continuous(breaks = pretty(rladies$members, n = 8)) + 
+        theme_bw() + 
+        labs(title = "Number of R-Ladies members on meetup.com") + 
+                theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12,face="bold"), 
+        plot.title = element_text(size=12, face="bold"))
+```
+
+---
+
+```{r tech-events, cache = TRUE, echo = FALSE}
+events = read.csv('data/events.csv') %>%  mutate(castedDate =  ymd(date), 
+                   year = year(castedDate)) %>% 
+        filter(year < 2019)
+
+# events are not by country
+
+tech_events= events %>% select(year, yes_rsvp) %>% 
+        group_by(year) %>% 
+        summarise(rsvp = sum(yes_rsvp))
+```
+
+
+```{r rsvp-plot, echo = FALSE, cache = TRUE}
+ggplot(tech_events, aes(x = year, y = rsvp)) + 
+        geom_line(color="blue", size = 1) +
+        scale_x_continuous(breaks = pretty(tech_events$year, n = 8)) +
+        scale_y_continuous(breaks = pretty(tech_events$rsvp, n = 8)) + 
+        theme_bw() + 
+        labs(title = "Number of women's tech events meetup.com world wide") + 
+                theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12,face="bold"), 
+        plot.title = element_text(size=12, face="bold"))
+```
+
+
+## Women in tech worldwide
+
+source: https://www.honeypot.io/women-in-tech-2018/
+
+Sub-major group 25 of the [International Standard Classification of Occupations (ISCO-08)](https://www.ilo.org/public/english/bureau/stat/isco/). 
+
+
+The main components of this section are publishing activities, including software publishing (division 58), motion picture and sound recording activities (division 59), radio and TV broadcasting and programming activities (division 60), telecommunications activities (division 61) and information technology activities (division 62) and other information service activities (division 63). Source: Eurostat.
+
+
+
+```{r tech-world, echo = FALSE}
+tech_jobs = read.csv("data/tech_jobs.csv")
+tech_jobs$continent = countrycode(tech_jobs$country,"country.name", "continent")
+
+tech = tech_jobs %>% select(continent, tech_perc, tech_perc_women, stem_perc_women_grad) %>% 
+        gather(key = 'tech.ind', value = 'percentage', -continent) 
+
+labels_tech = c(tech_perc = "% tech", tech_perc_women = "% women tech", stem_perc_women_grad = "% women STEM grad" )
+labels_continent = c(Americas = "Americas n = 12", Asia = "Asia n = 15", Europe = "Europe n = 84", Oceania = "Oceania n = 6")
+```
+
+## The tech community: globally
+
+```{r tech-continent, echo = FALSE}
+ggplot(data = tech, aes(x = percentage)) + 
+        geom_freqpoly() + 
+        facet_grid(continent~tech.ind, labeller = labeller(tech.ind = labels_tech, continent = labels_continent)) + 
+        theme_light() + 
+        theme(axis.text=element_text(size=12),
+        axis.title=element_text(size=12,face="bold"), 
+        plot.title = element_text(size=12, face="bold"))
+    
+```
+
+
+---
+
+```{r wagegap, echo = FALSE, fig.width=8, fig.height=6, out.width="100%"}
+tech_jobs  %<>% mutate(wagegap = ifelse(change_paygap<0, "Worsened", "Improved"))
+
+ggplot(tech_jobs) + 
+        geom_segment(aes(y=reorder(country, change_paygap), yend=country, x=0, xend=change_paygap, color=wagegap), 
+                     size=1.3, alpha=0.9) + 
+        geom_vline(xintercept = 0) + 
+        labs(
+                title = "Change in Gender Pay Gap, 2010-2015",
+                caption = "Source: https://www.honeypot.io/women-in-tech-2018/",
+                x = "Pay gap between 2010 and 2015",
+                y = "Country") + 
+        scale_color_manual(values=c("green","red")) + 
+        scale_y_discrete(labels=c("Canada"=expression(bold('Canada')), "United         
+                                  States"=expression(bold('UnitedStates')), parse=TRUE)) + 
+        theme_bw() + 
+        theme(axis.text=element_text(size=10),
+        axis.title=element_text(size=12,face="bold"), 
+        plot.title = element_text(size=12, face="bold"))
+
+#ggplotly(p)
+
+```
+
+
+
+## Women in tech - stack overflow, globally {.smaller}
+When making maps, sometimes you have data that has 2-character, 3-character abbreviations, full spelling.
+There's a handy package called `rworldmaps` that allows you to convert almost any geographic spelling to maps other types. See `?codelist` for all options. 
+
+```{r map-setup}
+
+
+
+# Match country names in survey to the country names in package
+matched = joinCountryData2Map(tech_jobs, joinCode="NAME", nameJoinColumn="country", verbose = T)
+
+```
+
+## Very ugly plot
+
+```{r map-ugly, echo = FALSE}
+mapCountryData(matched, nameColumnToPlot="tech_perc_women", mapTitle="Women in Tech Jobs World Wide", catMethod = "pretty", colourPalette = "heat")
+```
+
+
+## Let's try to make it a bit prettier
+```{r map-pretty, echo = FALSE}
+
+# Change color 
+
+colourPalette = RColorBrewer::brewer.pal(5,'RdPu')
+
+# change the legend of the value to be plotted (count) to something more informative 
+classInt = classIntervals(tech_jobs$tech_perc_women, n=5, style="sd")
+
+catMethod = classInt$sd
+#catMethod = classInt[["sd"]]
+par(mai=c(0,0,0.2,0),xaxs="i",yaxs="i")
+
+mapCountryData(matched, 
+               nameColumnToPlot="tech_perc_women", 
+               mapTitle="Women in Tech Jobs World Wide",
+               colourPalette= colourPalette,  #changed color palette
+               oceanCol= 'lightblue', #blue ocean
+               catMethod= 'catMethod', 
+               borderCol = 'black', #add black country borders
+               missingCountryCol= 'grey') #missing countries in grey
+```
+
+
+
+## Meetup tech groups and women in tech {.smaller}
+
+Create a data frame of the number of groups, by year and country
+We'll only keep 2016 since the data for tech jobs is cross-sectional 
+Convert the 2-letter ios2c country codes to full length country names 
+Merge the tech jobs & meetup tech groups!
+
+```{r create-jobs-groups}
+groups_jobs = groups %>% 
+        filter(year == 2016) %>% 
+        group_by(country) %>%
+        summarise(groups.total = n()) %>% 
+        rename(country.abb = country) %>% 
+        ungroup()
+
+groups_jobs$country = countrycode(groups_jobs$country.abb, "iso2c", "country.name")
+        
+groups_jobs %<>%  left_join(tech_jobs) %>% 
+        na.omit() %>% data.frame()
+```
+
+## Create plot of jobs and tech groups {.smaller}
+
+```{r plot-groups-jobs, cache = TRUE}
+
+plot.groups = ggplot(data = groups_jobs, aes(x = groups.total, y = tech_perc_women)) +
+        geom_point() + 
+        geom_text_repel(aes(label=country.abb), size = 3) + 
+        labs(
+                title = "Number of Women's Tech Groups and Women in Tech Jobs, by Country ",
+                caption = "Source: https://www.honeypot.io/women-in-tech-2018/",
+                x = "Women's Tech Meetup gGroups",
+                y = "Percentage of women in tech") +
+        guides(size = FALSE) +
+        theme_bw() +
+        theme(panel.grid.major.x = element_blank(),
+        legend.position = 'none')
+```
+
+ 
+## Women's tech groups and jobs, by country
+
+```{r, echo = FALSE, cache = TRUE}
+plot.groups
+```
+
+## Future directions
+I'd like to keep exploring the data and wanted to ask for your help. It might be a fun idea to have a R-Ladies Montreal group analysis on ... ourselves. All the code and data will be available on github. Please fork the repo and contribute in any way you'd like. The ultimate goal would be to write a short editorial and have it published in a journal. 
+
+So let's bounce some ideas around and see what we come up with!
