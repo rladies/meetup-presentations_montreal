@@ -4,11 +4,11 @@
 # R-Ladies Montreal
 
 ## Upcoming events
-:date: Thursday March 21, 2019 
+:date: Thursday April 18, 2019 
 
-**Analyzing data from women's tech groups**
+**Introduction to Git and Github**
 
-Erika Braithwaite, PhD will be presenting some very cool publicly available data on women in tech meetups groups around the world. Please come with the newest versions of R and RStudio pre-installed on your laptop. This is a basic workshop! Advanced statistical knowledge not required :) 
+Chelsea Douglas will present a short beginner workshop on git and github. No prior experience is necessary :) 
 
 :alarm_clock: 6pm
 
@@ -17,7 +17,7 @@ Erika Braithwaite, PhD will be presenting some very cool publicly available data
 :office: To find us, come into 5555 Ave de Gaspé through the front doors and it's the first door on your left (suite 118). 
 The door says Plotly!
 
-:computer: [Link to materials](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190221_ML). 
+:computer: [Link to materials](https://github.com/cldougl/rladies-git-intro.git). 
 The R code contains everything you need to follow along with the workshop. 
 
 
@@ -35,6 +35,8 @@ The R code contains everything you need to follow along with the workshop.
 | November 15, 2018 | 6 pm | Data cleaning & Introduction to Social Network Analysis | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20181115_data-cleaning) |
 | January 17, 2019 | 6 pm | Introduction to dplyr | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20190117_dplyr) |
 | February, 2019 | 6 pm | Introduction to Machine Learning | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190221_ML) |
+| March 21, 2019 | 6 pm | Analyzing women's only tech groups on meetup.com | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190319_women-tech) |
+| April 18, 2019 | 6 pm | Introduction to git and github | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/cldougl/rladies-git-intro.git) |
 
 
 ## Speakers

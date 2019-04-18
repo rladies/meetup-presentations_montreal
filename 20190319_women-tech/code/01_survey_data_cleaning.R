@@ -1,6 +1,6 @@
 
 #### Install packages ####
-pacman::p_load(dplyr, magrittr, purrr, stringr)
+pacman::p_load(dplyr, magrittr, purrr, stringr, summarytools, forcats)
 
 # "https://www.kaggle.com/juliasilge/stack-overflow-feeling-of-belonging?utm_medium=partner&utm_source=stackoverflow&utm_campaign=developer+survey+2018"
 # source: https://insights.stackoverflow.com/survey
@@ -30,8 +30,11 @@ list2env(df_list ,.GlobalEnv)
 colnames(survey_2015) = as.character(unlist(survey_2015[1,]))
 df_2015 = survey_2015
 
+# then remove that first row
+
+df_2015= df_2015[-1,]
+
 # The column names are actually much better now, but there are some upper cases that I'd like to get rid of 
-#colnames(df_2015) %<>% tolower
 
 df_2015  = survey_2015 %>% 
         rename_all(tolower) %>% 
@@ -63,6 +66,24 @@ df_2015  = survey_2015 %>%
                      phd_training = `training & education: phd in cs`, 
                      comp = compensation, 
                      satisfaction = `job satisfaction`)
+
+
+# Recode factors 
+
+dfSummary(df_2015) 
+
+df_2015  %<>% mutate(gender = factor(ifelse(gender == "Female", "Female", 
+                                     ifelse(gender == "Male", "Male", 
+                                            ifelse(gender == "Other", "Non-binary",
+                                                   ifelse(gender == "", NA, NA))))))
+
+levels(df_2015$age)[levels(df_2015$age)=="Age"] = NA
+levels(df_2015$age)[levels(df_2015$age)=="Prefer not to disclose"] = NA
+
+df_2015  %<>% mutate(age = fct_relevel(age, "< 20", "20-24", "25-29", "30-34", "35-39", "40-50", "51-60", "> 60"))
+
+##this didn't work 
+df_2015  %<>% mutate_at(vars(yrs_exp:occupation), funs(recode(., "" = NA_real_)))
 
 #### 2016 #####
 # things that will need recoding: tech_do, education
