@@ -19,7 +19,7 @@ She'll be presenting an Introduction of R aimed at beginners! No prior experienc
 :office: To find us, come into 5555 Ave de Gaspé through the front doors and it's the first door on your left (suite 118). 
 The door says Plotly!
 
-:computer: [Link to materials](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20190620_Intro-To-R). 
+:computer: [Link to materials](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190620_Intro-To-R). 
 The R code contains everything you need to follow along with the workshop. 
 
 
@@ -45,10 +45,10 @@ The R code contains everything you need to follow along with the workshop.
 R-Ladies lives through its participants. We *ALWAYS* need speakers for meetups! Please get in touch with us through our [meetup page](https://www.meetup.com/rladies-montreal/)
 
 ## Further information
-Organisers are: [Kathryn Morrison](https://www.precision-analytics.ca/ourteam/), and [Erika Braithwaite](https://www.precision-analytics.ca/ourteam/).
+Organisers are: [Kathryn Morrison](https://www.precision-analytics.ca/ourteam/) and [Erika Braithwaite](https://www.precision-analytics.ca/ourteam/).
 
 
-Checkout our [Meetup page](https://www.meetup.com/rladies-montreal/) for more info!.
+Checkout our [Meetup page](https://www.meetup.com/rladies-montreal/) for more info!
 
 Follow us on [Twitter](https://twitter.com/RLadiesMTL).
 
