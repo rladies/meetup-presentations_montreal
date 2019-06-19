@@ -4,11 +4,13 @@
 # R-Ladies Montreal
 
 ## Upcoming events
-:date: Thursday April 18, 2019 
+:date: Thursday June 20, 2019 
 
-**Introduction to Git and Github**
+**Introduction to R**
 
-Chelsea Douglas will present a short beginner workshop on git and github. No prior experience is necessary :) 
+We're so excited to host [Isabella Gollini](https://sites.google.com/site/isabellagollini/), PhD from University of Dublin 
+
+She'll be presenting an Introduction of R aimed at beginners! No prior experience is necessary :) 
 
 :alarm_clock: 6pm
 
@@ -17,7 +19,7 @@ Chelsea Douglas will present a short beginner workshop on git and github. No pri
 :office: To find us, come into 5555 Ave de Gaspé through the front doors and it's the first door on your left (suite 118). 
 The door says Plotly!
 
-:computer: [Link to materials](https://github.com/cldougl/rladies-git-intro.git). 
+:computer: [Link to materials](https://github.com/ErikaBraith/meetup-presentations_montreal/tree/master/20190620_Intro-To-R). 
 The R code contains everything you need to follow along with the workshop. 
 
 
