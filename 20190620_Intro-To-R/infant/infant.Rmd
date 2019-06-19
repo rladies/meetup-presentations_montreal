@@ -1,0 +1,18 @@
+---
+title: "Child Health and Development Study"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+# set chunk options so that code is not shown in report
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Introduction
+
+This report Child Health and Development Study
+
+```{r import-data}
+# add code here to import infant.xlsx
+
+```
