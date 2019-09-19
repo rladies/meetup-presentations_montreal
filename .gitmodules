@@ -1,3 +1,6 @@
 [submodule "rladies-git-intro"]
 	path = 20190418_rladies-git-intro
 	url = https://github.com/cldougl/rladies-git-intro.git 
+[submodule "20190919_DashR-Demo"]
+	path = 20190919_DashR-Demo
+	url = https://github.com/rpkyle/rladies-mtl-demo.git
