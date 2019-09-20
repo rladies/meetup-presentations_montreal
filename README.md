@@ -39,6 +39,8 @@ The R code contains everything you need to follow along with the workshop.
 | February, 2019 | 6 pm | Introduction to Machine Learning | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190221_ML) |
 | March 21, 2019 | 6 pm | Analyzing women's only tech groups on meetup.com | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190319_women-tech) |
 | April 18, 2019 | 6 pm | Introduction to git and github | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/cldougl/rladies-git-intro.git) |
+| June 19, 2019 | 6 pm | Introduction to R | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190620_Intro-To-R) |
+| September 19, 2019 | 6 pm | Introduction to Dash for R | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190620_Intro-To-R) |
 
 
 ## Speakers
