@@ -4,13 +4,10 @@
 # R-Ladies Montreal
 
 ## Upcoming events
-:date: Thursday June 20, 2019 
+:date: Thursday October 17, 2019 
 
-**Introduction to R**
+**TBD**
 
-We're so excited to host [Isabella Gollini](https://sites.google.com/site/isabellagollini/), PhD from University of Dublin 
-
-She'll be presenting an Introduction of R aimed at beginners! No prior experience is necessary :) 
 
 :alarm_clock: 6pm
 
@@ -19,9 +16,7 @@ She'll be presenting an Introduction of R aimed at beginners! No prior experienc
 :office: To find us, come into 5555 Ave de Gaspé through the front doors and it's the first door on your left (suite 118). 
 The door says Plotly!
 
-:computer: [Link to materials](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190620_Intro-To-R). 
-The R code contains everything you need to follow along with the workshop. 
-
+:computer: Link to material will be added soon!
 
 
 :point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/)  
