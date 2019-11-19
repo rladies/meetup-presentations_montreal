@@ -1,0 +1,340 @@
+<style>
+.reveal code {
+    font-family: monospace;
+    color: #A30664; 
+    font-face: bold; 
+}
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  word-wrap: normal; 
+  -moz-hyphens: none;
+  font-size: 45px;
+} 
+</style>
+<style>
+.small-code pre code {
+  font-size: 1em;
+}
+</style>
+<style>
+.footer {
+    color: black;
+    font-family: Montserrat; 
+    font-size: 9px; 
+    background: #E8E8E8;
+    position: fixed;
+    top: 100%;
+    text-align:right;
+    width:100%; }
+</style>
+
+R Ladies: Interactive dplyr workshop 
+======================================================== 
+author: Kathryn Morrison 
+font-import: http://fonts.googleapis.com/css?family=Montserrat
+font-family: 'Montserrat'
+date: November 21, 2019  
+autosize: true  
+
+Today's Agenda 
+========================================================
+incremental: true   
+
+<small> 
+6:00PM - 6:15PM <br> 
+**Snacks and Pizza!** 
+
+6:15PM - 6:30PM <br> 
+**Welcome, housekeeping**
+
+6:30PM - 6:45PM  <br> 
+**Brief introduction to dplry**
+
+6:45PM - 8:00PM <br> 
+**Interactive dplyr workshop**
+</small>
+
+
+Welcome & Housekeeping  
+========================================================
+
+
+_Any welcome/recap/admin stuff, ask about ideas for future speakers, etc_ 
+
+
+Manipulating data with dplyr 
+========================================================
+incremental: true
+<center> ![0.5](slides-figure/pipe.jpg) </center> 
+<small> The "tidyverse" is a collection of libraries, like `dplyr` that follow some basic coding best practices
+
+`dplyr` is a key tidyverse library that is great for data wrangling 
+
+The pipe opperator **%>%** allows you to chain together operations in a sequence, avoiding unnecessary temporary tables, and using descriptive functions that are normal english verbs 
+
+Tip: the keyboard shortcute for the `dplyr` pipe operator is Ctrl+Shift+M (Windows) or Cmd+Shift+M (OSX)
+</small>
+
+Manipulating data with dplyr 
+========================================================
+incremental: true
+class: small-code
+
+A `tibble` is the tidyverse's version of a data frame. It never changes an input's type (i.e. no conversion of characters to factors) and it allows you to specify variable names outside of the valid R naming rules.
+  
+```{r}
+ds_df <- data.frame(`1 weird name` = 1:3, `is it a factor?` = letters[1:3])
+str(ds_df)
+library(dplyr)
+ds_tib <- tibble(`1 weird name` = 1:3, `is it a factor?` = letters[1:3])
+str(ds_tib)
+```
+
+Manipulating data with dplyr 
+========================================================
+incremental: true
+
+<small> Tibbles differ from data frames in two main areas: printing and subsetting 
+  * **Printing** a tibble will limit to the first 10 rows and as many columns as fill the console. Extra information on the dimensions, variable types and grouping variables is also included 
+  * **Subsetting** rules are stricter than with data frames. Specifically, using the `[` will always return a tibble and never a vector as sometimes happens with a data frame
+  
+Note that a dataframe passed to a dplyr function will be returned as a tibble; this is usually fine, but not all functions from other packages accept tibbles! Sometimes you will need to transform a tibble back to a data frame with `as.data.frame()`. </small> 
+
+Manipulating data with dplyr 
+========================================================
+
+<center> ![](slides-figure/pipe.jpg) </center> 
+
+We will be learning: `select()`, `arrange()`, `filter()`, `mutate()`, `join()`,  `group_by()`, `melt()` 
+
+Let's go through some examples - it's the easiest way to understand and learn 
+
+
+
+Reviewing the data 
+========================================================
+
+```{r}
+library(dplyr)
+library(datasets)
+ds <- esoph
+str(ds)
+```
+
+
+Reviewing the data 
+========================================================
+class: small-code
+
+```{r}
+summary(ds) 
+```
+
+select() 
+========================================================
+class: small-code
+
+Let's select just three columns: age group, number of cases, number of controls
+```{r}
+ds %>% select(agegp, ncases, ncontrols) %>% head()
+```
+
+arrange() 
+========================================================
+class: small-code
+
+Let's arrange in descending order of number of cases 
+```{r}
+ds %>% arrange(desc(ncases)) %>% head()
+```
+
+
+filter() 
+========================================================
+class: small-code
+
+Let's filter by those who are at least 65 years old.
+If we want to save this filter, we can create a new dataframe. 
+```{r}
+ds_olderadults <- ds %>% filter(agegp >= '65-74') 
+ds_olderadults %>% head(3)
+```
+
+* Note the ordered factor allows for >= command on a character variable.
+
+ 
+mutate() 
+========================================================
+class: small-code
+
+Let's create a new variable that is the odds of the outcome per group. 
+```{r}
+ds_olderadults <- ds_olderadults %>% mutate(odds = ncases/ncontrols) 
+```
+
+To append a variable to the same data frame, assign it with the same name. 
+
+
+group_by() 
+========================================================
+class: small-code
+
+What if we wanted to know the average odds per age group? 
+```{r}
+ds_olderadults %>% group_by(agegp) %>% summarise(mean_odds = mean(odds)) %>% head(3)
+
+```
+
+Activity II: Manipulating data in using dplyr  
+========================================================
+class: small-code
+type: section
+
+Annual data on fertility in the US, between 2003-2018
+
+Level of observation: state, level, and race category of the mother
+
+```{r}
+# Data source: https://wonder.cdc.gov/
+births_2003_2006 <- readRDS("data/births_2003_2006.rds")
+births_2007_2018 <- readRDS("data/births_2007_2018.rds")
+names(births_2007_2018)
+```
+
+Activity II: Instructions
+========================================================
+type: section
+class: small-code
+
+<small> Using dplyr and the above example datasets, complete the following exercises: <br> <br> 
+(1) Bind the two data frames into a single data frame. What are the new dimensions of the data frame? <br> 
+(2) Delete the first column of the data with the "Notes"<br>
+(3) Remove all observations where Average.LMP.Gestational.Age has missing values <br>
+(4) Calculate the average birth weight by state using mutate and summarise. How are the results different? <br>
+(5) What were the the states with the 5 highest fertility rates in 2010 (tricky question!) <br> <br>
+(6) For each year, compute the minimum and maximum for each numeric variable
+
+A few useful functions: `bind_rows()`, `select()`, `filter()`, `mutate()`,<br> `summarise()`, `arrange()`, `top_n()` </small> 
+
+
+
+Solution 1: 
+========================================================
+incremental: true
+class: small-code
+
+<small>Bind the two rows together, what are the new dimenions of the data frame? </small>
+
+```{r}
+df <- bind_rows(births_2003_2006, births_2007_2018)
+dim(df)
+
+#Alternatively
+ncol(df)
+nrow(df)
+```
+
+
+Solution 2: 
+========================================================
+incremental: true
+class: small-code
+
+<small> Delete the first column of the data with the "Notes" </small>
+
+```{r}
+df %>% select(-Notes) %>% head()
+
+```
+
+
+Solution 3: 
+========================================================
+incremental: true
+class: small-code
+
+<small> Remove all observations where Average.LMP.Gestational.Age has missing values </small>
+
+```{r}
+
+df %>% filter(!is.na(Average.LMP.Gestational.Age)) %>% head()
+
+```
+
+
+Solution 4: 
+========================================================
+incremental: true
+class: small-code
+
+<small> Calculate the average birth weight by state </small>
+
+```{r}
+df %>% group_by(State) %>% 
+  mutate(avg_bw = mean(Average.Birth.Weight, na.rm = T)) %>% 
+  head(2)
+
+df %>% group_by(State) %>% 
+  summarise(avg_bw = mean(Average.Birth.Weight)) %>% 
+  head(2)
+```
+
+Solution 5: 
+========================================================
+incremental: true
+class: small-code
+
+<small> What were the the states with the 5 highest fertility rates in 2010? </small> 
+
+```{r}
+ df %>% filter(Year == 2010) %>% # restrict to 2010
+  group_by(State) %>% # collapse over racial groups
+  summarise(avg_fertility = mean(Fertility.Rate)) %>% #calculate new state-level average
+  arrange(desc(avg_fertility)) %>% #sort average fertility rates in ascdending order
+  top_n(5) %>% #select highest values
+  head(5) 
+```
+
+
+Solution 6: Solution
+========================================================
+incremental: true
+class: small-code
+
+<small> For each year, compute the minimum and maximum for each numeric variable </small>
+
+```{r}
+df %>% group_by(Year) %>% 
+  summarise_if(., is.numeric, funs(min, max(.))) %>% 
+  head(3)
+```
+
+
+
+R and the tidyverse resources:
+========================================================
+class: small-code
+
+
+Data analysis and modelling <br> 
+R for Data Science by Hadley Wickham & Garrett Grolemund
+https://r4ds.had.co.nz/
+
+Interactive tutorial: Swirl <br>
+http://swirlstats.com/scn/
+
+RStudio "Cheat sheets" are very useful summaries: <br>
+https://rstudio.com/resources/cheatsheets/
+
+https://www.tidyverse.org/learn/
+
+<!-- put this in the last slide -- use jquery to append page # to all sections -->
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+
+for(i=0;i<$("section").length;i++) {
+if(i==0) continue
+$("section").eq(i).append("<p style='font-size:20px;position:fixed;right:75px;bottom:10px;'>" + i + "</p>")
+}
+
+</script>
