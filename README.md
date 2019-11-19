@@ -6,7 +6,7 @@
 ## Upcoming events
 :date: Thursday November 21, 2019 
 
-**TBD**
+**Introduction to dplyr: brief overview and hands-on workshop**
 
 
 :alarm_clock: 6pm
