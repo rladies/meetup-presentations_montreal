@@ -11,7 +11,7 @@
 
 :alarm_clock: 6pm
 
-:round_pushpin: [Upgrade HQ](https://goo.gl/maps/xCipeSaBddG2)  1080 Cote du Beaver Hall Suite 200, Montreal QC
+:round_pushpin: [Upgrade HQ](shorturl.at/kOSW6)  1080 Cote du Beaver Hall Suite 200, Montreal QC
 
 
 :computer: [Link to material](https://github.com/rladies/meetup-presentations_montreal/tree/master/20191121_dplyr-workshop)
