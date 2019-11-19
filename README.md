@@ -4,19 +4,17 @@
 # R-Ladies Montreal
 
 ## Upcoming events
-:date: Thursday October 17, 2019 
+:date: Thursday November 21, 2019 
 
 **TBD**
 
 
 :alarm_clock: 6pm
 
-:round_pushpin: [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2)  5555 Ave de Gaspé, Suite 118, Montreal QC H2T 2T3 
+:round_pushpin: [Upgrade HQ](https://goo.gl/maps/xCipeSaBddG2)  1080 Cote du Beaver Hall Suite 200, Montreal QC
 
-:office: To find us, come into 5555 Ave de Gaspé through the front doors and it's the first door on your left (suite 118). 
-The door says Plotly!
 
-:computer: Link to material will be added soon!
+:computer: [Link to material](https://github.com/rladies/meetup-presentations_montreal/tree/master/20191121_dplyr-workshop)
 
 
 :point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/)  
