@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <title>R Ladies: Interactive dplyr workshop </title>
+  <title>R Ladies: Introductory dplyr workshop </title>
     
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -774,7 +774,7 @@ hljs.initHighlightingOnLoad();
    
   
 
-<style>.reveal code {    font-family: monospace;    color: #A30664;     font-face: bold; }.reveal h1, .reveal h2, .reveal h3, .reveal h4 {  word-wrap: normal;   -moz-hyphens: none;  font-size: 45px;} </style><style>.small-code pre code {  font-size: 1em;}</style><style>.footer {    color: black;    font-family: Montserrat;     font-size: 9px;     background: #E8E8E8;    position: fixed;    top: 100%;    text-align:right;    width:100%; }</style>
+<style>.reveal code {    font-family: monospace;    color: green;     font-face: bold; }.reveal h1, .reveal h2, .reveal h3, .reveal h4 {  word-wrap: normal;   -moz-hyphens: none;  font-size: 45px;} </style><style>.small-code pre code {  font-size: 1em;}</style><style>.footer {    color: black;    font-family: Montserrat;     font-size: 9px;     background: #E8E8E8;    position: fixed;    top: 100%;    text-align:right;    width:100%; }</style>
 
 
 
@@ -785,7 +785,7 @@ hljs.initHighlightingOnLoad();
   <div class="slides">
 
 <section data-state="section" data-transition="linear" data-transition-speed="default">
-<h1>R Ladies: Interactive dplyr workshop </h1><p>Kathryn Morrison<br/>November 21, 2019</p>
+<h1>R Ladies: Introductory dplyr workshop </h1><p>November 21, 2019</p>
 
 <div class="slideContent" >
 
@@ -800,228 +800,71 @@ hljs.initHighlightingOnLoad();
 <strong>Snacks and Pizza!</strong> </p>
 
 <p class="fragment">6:15PM - 6:30PM <br> 
-<strong>Welcome, housekeeping</strong></p>
+<strong>Welcome, housekeeping, future topics</strong> <br></p>
 
-<p class="fragment">6:30PM - 6:45PM  <br> 
-<strong>Brief introduction to dplry</strong></p>
+<p class="fragment">6:30PM - 6:45PM <br> 
+<strong>Introduction to the dplyr package: Tutorial by Roger Peng</strong></p>
 
 <p class="fragment">6:45PM - 8:00PM <br> 
-<strong>Interactive dplyr workshop</strong>
+<strong>Interactive dplyr exercises</strong>
 </small></p>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Welcome &amp; Housekeeping  </h3>
+<h3>Introduction &amp; Housekeeping </h3>
 <div class="slideContent" >
-<p><em>Any welcome/recap/admin stuff, ask about ideas for future speakers, etc</em> </p>
+<p>Welcome to R Ladies Montreal! How may first-time attendees? </p>
+
+<p class="fragment">We will skip the December meetup and resume January 16, 2020. </p>
+
+<p class="fragment">As we line up the speakers and topics for next year, we would like your input! </p>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Manipulating data with dplyr </h3>
+<h3>Future topics</h3>
 <div class="slideContent" >
-<p><center> <img src="data:image/jpeg;base64,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" alt="0.5"/> </center> 
-<small> As previously described, the &ldquo;tidyverse&rdquo; is a collection of libraries, like <code>dplyr</code> that follow some basic coding best practices</p>
+<p>Please take a few minutes now to fill out this survey: </p>
 
-<p class="fragment"><code>dplyr</code> is a key tidyverse library that is great for data wrangling </p>
-
-<p class="fragment">The pipe opperator allows you to chain together operations in a sequence, avoiding unnecessary temporary tables, and using descriptive functions that are normal english verbs 
-</small></p>
+<p class="fragment"><a href="https://forms.gle/JvKpQe1a7TJL9o1a6">https://forms.gle/JvKpQe1a7TJL9o1a6</a></p>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Manipulating data with dplyr </h3>
-<div class="slideContent small-code" >
-<p>A <code>tibble</code> is the tidyverse&#39;s version of a data frame. It never changes an input&#39;s type (i.e. no conversion of characters to factors) and it allows you to specify variable names outside of the valid R naming rules.</p>
-
-<pre class="fragment"><code class="r">ds_df &lt;- data.frame(`1 weird name` = 1:3, `is it a factor?` = letters[1:3])
-str(ds_df)
-</code></pre>
-
-<pre class="fragment"><code>&#39;data.frame&#39;:   3 obs. of  2 variables:
- $ X1.weird.name  : int  1 2 3
- $ is.it.a.factor.: Factor w/ 3 levels &quot;a&quot;,&quot;b&quot;,&quot;c&quot;: 1 2 3
-</code></pre>
-
-<pre class="fragment"><code class="r">library(dplyr)
-ds_tib &lt;- tibble(`1 weird name` = 1:3, `is it a factor?` = letters[1:3])
-str(ds_tib)
-</code></pre>
-
-<pre class="fragment"><code>Classes &#39;tbl_df&#39;, &#39;tbl&#39; and &#39;data.frame&#39;:   3 obs. of  2 variables:
- $ 1 weird name   : int  1 2 3
- $ is it a factor?: chr  &quot;a&quot; &quot;b&quot; &quot;c&quot;
-</code></pre>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Manipulating data with dplyr </h3>
+<h3>Introduction to the dplyr package: Tutorial by Roger Peng</h3>
 <div class="slideContent" >
-<p><small> Tibbles differ from data frames in two main areas: printing and subsetting </p>
+<p>Roger Peng, PhD <br> 
+Professor, Department of Biostatistics, Johns Hopkins </p>
 
-<ul>
-<li class="fragment"><strong>Printing</strong> a tibble will limit to the first 10 rows and as many columns as fill the console. Extra information on the dimensions, variable types and grouping variables is also included </li>
-<li class="fragment"><strong>Subsetting</strong> rules are stricter than with data frames. Specifically, using the <code>[</code> will always return a tibble and never a vector as sometimes happens with a data frame</li>
-</ul>
+<p>Author of &ldquo;Art of Data Science&rdquo; textbook, 2016 </p>
 
-<p class="fragment">Note that a dataframe passed to a dplyr function will be returned as a tibble; this is usually fine, but not all functions from other packages accept tibbles! Sometimes you will need to transform a tibble back to a data frame with <code>as.data.frame()</code>. </small> </p>
+<p><a href="https://www.youtube.com/watch?v=aywFompr1F4">https://www.youtube.com/watch?v=aywFompr1F4</a></p>
 
 </div>
 
 </section>
 <section data-transition="linear" data-transition-speed="default">
-<h3>Manipulating data with dplyr </h3>
+<h3>Where to learn more </h3>
 <div class="slideContent" >
-<p><center> <img src="data:image/jpeg;base64,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" alt=""/> </center> </p>
+<p><b> Data analysis and modelling </b> <br>
+R for Data Science by Hadley Wickham &amp; Garrett Grolemund <br>
+<a href="https://r4ds.had.co.nz/">https://r4ds.had.co.nz/</a></p>
 
-<p>We will be learning: select(), arrange(), filter(), mutate(), join(),  group_by(), melt() </p>
+<p><b> The inner workings of R     </b> <br>
+Advanced R by Hadley Wicham: Free e-book!  <br>
+<a href="http://adv-r.had.co.nz/">http://adv-r.had.co.nz/</a></p>
 
-<p>Let&#39;s go through some examples - it&#39;s the easiest way to understand and learn </p>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Reviewing the data </h3>
-<div class="slideContent" >
-<pre><code class="r">library(dplyr)
-library(datasets)
-ds &lt;- esoph
-str(ds)
-</code></pre>
-
-<pre><code>&#39;data.frame&#39;:   88 obs. of  5 variables:
- $ agegp    : Ord.factor w/ 6 levels &quot;25-34&quot;&lt;&quot;35-44&quot;&lt;..: 1 1 1 1 1 1 1 1 1 1 ...
- $ alcgp    : Ord.factor w/ 4 levels &quot;0-39g/day&quot;&lt;&quot;40-79&quot;&lt;..: 1 1 1 1 2 2 2 2 3 3 ...
- $ tobgp    : Ord.factor w/ 4 levels &quot;0-9g/day&quot;&lt;&quot;10-19&quot;&lt;..: 1 2 3 4 1 2 3 4 1 2 ...
- $ ncases   : num  0 0 0 0 0 0 0 0 0 0 ...
- $ ncontrols: num  40 10 6 5 27 7 4 7 2 1 ...
-</code></pre>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Reviewing the data </h3>
-<div class="slideContent small-code" >
-<pre><code class="r">summary(ds) 
-</code></pre>
-
-<pre><code>   agegp          alcgp         tobgp        ncases         ncontrols    
- 25-34:15   0-39g/day:23   0-9g/day:24   Min.   : 0.000   Min.   : 1.00  
- 35-44:15   40-79    :23   10-19   :24   1st Qu.: 0.000   1st Qu.: 3.00  
- 45-54:16   80-119   :21   20-29   :20   Median : 1.000   Median : 6.00  
- 55-64:16   120+     :21   30+     :20   Mean   : 2.273   Mean   :11.08  
- 65-74:15                                3rd Qu.: 4.000   3rd Qu.:14.00  
- 75+  :11                                Max.   :17.000   Max.   :60.00  
-</code></pre>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>select() </h3>
-<div class="slideContent small-code" >
-<p>Let&#39;s select just three columns: age group, number of cases, number of controls</p>
-
-<pre><code class="r">ds %&gt;% select(agegp, ncases, ncontrols) %&gt;% head()
-</code></pre>
-
-<pre><code>  agegp ncases ncontrols
-1 25-34      0        40
-2 25-34      0        10
-3 25-34      0         6
-4 25-34      0         5
-5 25-34      0        27
-6 25-34      0         7
-</code></pre>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>arrange() </h3>
-<div class="slideContent small-code" >
-<p>Let&#39;s arrange in descending order of number of cases </p>
-
-<pre><code class="r">ds %&gt;% arrange(desc(ncases)) %&gt;% head()
-</code></pre>
-
-<pre><code>  agegp  alcgp    tobgp ncases ncontrols
-1 65-74  40-79 0-9g/day     17        34
-2 55-64  40-79 0-9g/day      9        40
-3 55-64 80-119 0-9g/day      9        18
-4 55-64 80-119    10-19      8        15
-5 45-54  40-79 0-9g/day      6        38
-6 45-54 80-119    10-19      6        14
-</code></pre>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>filter() </h3>
-<div class="slideContent small-code" >
-<p>Let&#39;s filter by those who are at least 65 years old.
-If we want to save this filter, we can create a new dataframe. </p>
-
-<pre><code class="r">ds_olderadults &lt;- ds %&gt;% filter(agegp &gt;= &#39;65-74&#39;) 
-ds_olderadults %&gt;% head(3)
-</code></pre>
-
-<pre><code>  agegp     alcgp    tobgp ncases ncontrols
-1 65-74 0-39g/day 0-9g/day      5        48
-2 65-74 0-39g/day    10-19      4        14
-3 65-74 0-39g/day    20-29      2         7
-</code></pre>
-
-<ul>
-<li>Note the ordered factor allows for &gt;= command on a character variable.</li>
-</ul>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>mutate() </h3>
-<div class="slideContent small-code" >
-<p>Let&#39;s create a new variable that is the odds of the outcome per group. </p>
-
-<pre><code class="r">ds_olderadults &lt;- ds_olderadults %&gt;% mutate(odds = ncases/ncontrols) 
-</code></pre>
-
-<p>To append a variable to the same data frame, assign it with the same name. </p>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>group_by() </h3>
-<div class="slideContent small-code" >
-<p>What if we wanted to know the average odds per age group? </p>
-
-<pre><code class="r">ds_olderadults %&gt;% group_by(agegp) %&gt;% summarise(mean_odds = mean(odds)) %&gt;% head(3)
-</code></pre>
-
-<pre><code># A tibble: 2 x 2
-  agegp mean_odds
-  &lt;ord&gt;     &lt;dbl&gt;
-1 65-74     0.516
-2 75+       0.587
-</code></pre>
+<p>&#39;Data-transformation with dplyr&#39; cheat sheet in your repo</p>
 
 </div>
 
 </section>
 <section data-state="section" data-transition="linear" data-transition-speed="default">
-<h2>Activity II: Manipulating data in using dplyr  </h2>
+<h2>Activity: Manipulating data in using dplyr  </h2>
 <div class="slideContent small-code" >
 <p>Annual data on fertility in the US, between 2003-2018</p>
 
@@ -1044,158 +887,16 @@ names(births_2007_2018)
 
 </section>
 <section data-state="section" data-transition="linear" data-transition-speed="default">
-<h2>Activity II: Instructions</h2>
+<h2>Activity I: Instructions</h2>
 <div class="slideContent small-code" >
-<p><small> Using dplyr and the above example datasets, complete the following exercises: <br> <br> 
+<p><small> Using dplyr and the example data, complete the following exercises: <br> <br> 
 (1) Bind the two data frames into a single data frame. What are the new dimensions of the data frame? <br> 
 (2) Delete the first column of the data with the &ldquo;Notes&rdquo;<br>
 (3) Remove all observations where Average.LMP.Gestational.Age has missing values <br>
 (4) Calculate the average birth weight by state using mutate and summarise. How are the results different? <br>
-(5) What were the the states with the 5 highest fertility rates in 2010 (tricky question!) <br> <br>
-Useful functions: <code>bind_rows()</code>, <code>select()</code>, <code>filter()</code>, <code>mutate()</code>,<br> <code>summarise()</code>, <code>arrange()</code>, <code>top_n()</code> </small> </p>
+(5) What were the the states with the 5 highest fertility rates in 2010 (tricky question!) <br> <br></p>
 
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Solution: </h3>
-<div class="slideContent small-code" >
-<p><small>Bind the two rows together, what are the new dimenions of the data frame? </small></p>
-
-<pre class="fragment"><code class="r">df &lt;- bind_rows(births_2003_2006, births_2007_2018)
-dim(df)
-</code></pre>
-
-<pre class="fragment"><code>[1] 3368    9
-</code></pre>
-
-<pre class="fragment"><code class="r">#Alternatively
-ncol(df)
-</code></pre>
-
-<pre class="fragment"><code>[1] 9
-</code></pre>
-
-<pre class="fragment"><code class="r">nrow(df)
-</code></pre>
-
-<pre class="fragment"><code>[1] 3368
-</code></pre>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Solution: </h3>
-<div class="slideContent small-code" >
-<p><small> Delete the first column of the data with the &ldquo;Notes&rdquo;</small></p>
-
-<pre class="fragment"><code class="r">df %&gt;% select(-Notes) %&gt;% head()
-</code></pre>
-
-<pre class="fragment"><code>    State Year            Mother.s.Bridged.Race Births Birth.Rate
-1 Alabama 2003 American Indian or Alaska Native    146       5.20
-2 Alabama 2003        Asian or Pacific Islander    607      13.98
-3 Alabama 2003        Black or African American  17931      15.07
-4 Alabama 2003                            White  40868      12.61
-5 Alabama 2004 American Indian or Alaska Native    179       6.18
-6 Alabama 2004        Asian or Pacific Islander    763      16.32
-  Fertility.Rate Average.Birth.Weight Average.LMP.Gestational.Age
-1          22.12              3236.81                       38.18
-2          52.69              3219.63                       38.61
-3          62.76              3039.20                       37.88
-4          63.09              3283.50                       38.43
-5          26.48              3161.90                       37.99
-6          61.86              3154.78                       38.56
-</code></pre>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Solution: </h3>
-<div class="slideContent small-code" >
-<p><small> Remove all observations where Average.LMP.Gestational.Age has missing values </small></p>
-
-<pre class="fragment"><code class="r">df %&gt;% filter(!is.na(Average.LMP.Gestational.Age)) %&gt;% head()
-</code></pre>
-
-<pre class="fragment"><code>  Notes   State Year            Mother.s.Bridged.Race Births Birth.Rate
-1       Alabama 2003 American Indian or Alaska Native    146       5.20
-2       Alabama 2003        Asian or Pacific Islander    607      13.98
-3       Alabama 2003        Black or African American  17931      15.07
-4       Alabama 2003                            White  40868      12.61
-5       Alabama 2004 American Indian or Alaska Native    179       6.18
-6       Alabama 2004        Asian or Pacific Islander    763      16.32
-  Fertility.Rate Average.Birth.Weight Average.LMP.Gestational.Age
-1          22.12              3236.81                       38.18
-2          52.69              3219.63                       38.61
-3          62.76              3039.20                       37.88
-4          63.09              3283.50                       38.43
-5          26.48              3161.90                       37.99
-6          61.86              3154.78                       38.56
-</code></pre>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Solution: </h3>
-<div class="slideContent small-code" >
-<p><small> Calculate the average birth weight by state </small></p>
-
-<pre class="fragment"><code class="r">df %&gt;% group_by(State) %&gt;% 
-  mutate(avg_bw = mean(Average.Birth.Weight, na.rm = T)) %&gt;% 
-  head(2)
-</code></pre>
-
-<pre class="fragment"><code># A tibble: 2 x 10
-# Groups:   State [1]
-  Notes State  Year Mother.s.Bridge… Births Birth.Rate Fertility.Rate
-  &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;chr&gt;             &lt;dbl&gt;      &lt;dbl&gt;          &lt;dbl&gt;
-1 &quot;&quot;    Alab…  2003 American Indian…    146        5.2           22.1
-2 &quot;&quot;    Alab…  2003 Asian or Pacifi…    607       14.0           52.7
-# … with 3 more variables: Average.Birth.Weight &lt;dbl&gt;,
-#   Average.LMP.Gestational.Age &lt;dbl&gt;, avg_bw &lt;dbl&gt;
-</code></pre>
-
-<pre class="fragment"><code class="r">df %&gt;% group_by(State) %&gt;% 
-  summarise(avg_bw = mean(Average.Birth.Weight)) %&gt;% 
-  head(2)
-</code></pre>
-
-<pre class="fragment"><code># A tibble: 2 x 2
-  State   avg_bw
-  &lt;chr&gt;    &lt;dbl&gt;
-1 &quot;&quot;         NA 
-2 Alabama  3168.
-</code></pre>
-
-</div>
-
-</section>
-<section data-transition="linear" data-transition-speed="default">
-<h3>Solution: </h3>
-<div class="slideContent small-code" >
-<p><small> What were the the states with the 5 highest fertility rates in 2010? </small> </p>
-
-<pre class="fragment"><code class="r"> df %&gt;% filter(Year == 2010) %&gt;% # restrict to 2010
-  group_by(State) %&gt;% # collapse over racial groups
-  summarise(avg_fertility = mean(Fertility.Rate)) %&gt;% #calculate new state-level average
-  arrange(desc(avg_fertility)) %&gt;% #sort average fertility rates in ascdending order
-  top_n(5) %&gt;% #select highest values
-  head(5) 
-</code></pre>
-
-<pre class="fragment"><code># A tibble: 5 x 2
-  State        avg_fertility
-  &lt;chr&gt;                &lt;dbl&gt;
-1 South Dakota          89.2
-2 North Dakota          88.5
-3 Alaska                86.9
-4 Nebraska              83.2
-5 Minnesota             82.2
-</code></pre>
+<p>Useful functions: <code>bind_rows()</code>, <code>select()</code>, <code>filter()</code>, <code>mutate()</code>,<br> <code>summarise()</code>, <code>arrange()</code>, <code>top_n()</code> </small> </p>
 
 <!-- put this in the last slide -- use jquery to append page # to all sections -->
 
@@ -1205,7 +906,7 @@ ncol(df)
 
 for(i=0;i<$("section").length;i++) {
 if(i==0) continue
-$("section").eq(i).append("<p style='font-size:20px;position:fixed;right:75px;bottom:10px;'>" + i + "</p>")
+$("section").eq(i).append("<p style='font-size:20px;position:fixed;right:75px;bottom:40px;'>" + i + "</p>")
 }
 
 </script>
