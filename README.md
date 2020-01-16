@@ -14,7 +14,7 @@
 :round_pushpin: [Upgrade HQ](shorturl.at/kOSW6)  1080 Cote du Beaver Hall Suite 200, Montreal QC
 
 
-:computer: [Link to material]
+:computer: [Link to material](https://github.com/Scott-Clone/portfolio-modelling/tree/18c21c5c10c1f220907fcfdddc9de917338822de)
 
 
 :point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/)  
