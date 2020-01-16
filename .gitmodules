@@ -4,6 +4,6 @@
 [submodule "20190919_DashR-Demo"]
 	path = 20190919_DashR-Demo
 	url = https://github.com/rpkyle/rladies-mtl-demo.git
-[submodule "20200116_portfolio-modelling"]
+[submodule "portfolio-modelling"]
 	path = 20200116_portfolio-modelling
 	url = https://github.com/Scott-Clone/portfolio-modelling.git
