@@ -4,9 +4,9 @@
 # R-Ladies Montreal
 
 ## Upcoming events
-:date: Thursday November 21, 2019 
+:date: Thursday January 16, 2020 
 
-**Introduction to dplyr: brief overview and hands-on workshop**
+**Stock Market Analysis using R**
 
 
 :alarm_clock: 6pm
@@ -14,7 +14,7 @@
 :round_pushpin: [Upgrade HQ](shorturl.at/kOSW6)  1080 Cote du Beaver Hall Suite 200, Montreal QC
 
 
-:computer: [Link to material](https://github.com/rladies/meetup-presentations_montreal/tree/master/20191121_dplyr-workshop)
+:computer: [Link to material]
 
 
 :point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/)  
@@ -34,6 +34,7 @@
 | April 18, 2019 | 6 pm | Introduction to git and github | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/cldougl/rladies-git-intro.git) |
 | June 19, 2019 | 6 pm | Introduction to R | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/rladies/meetup-presentations_montreal/tree/master/20190620_Intro-To-R) |
 | September 19, 2019 | 6 pm | Introduction to Dash for R | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/rpkyle/rladies-mtl-demo/tree/24f8c6e37aeebc75a7077deddfd1075cd2b6df84) |
+| November 21, 2019 | 6pm | Stock Market Analysis using R | Workshop | [Upgrade Inc](shorturl.at/kOSW6) | [materials to download in advance](https://github.com/rladies/meetup-presentations_montreal/tree/master/20191121_dplyr-workshop)
 
 
 ## Speakers
