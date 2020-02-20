@@ -1,0 +1,130 @@
+
+
+/* Inline #1 | file:///Users/erikabraithwaite/repo/CSCDS/CSCDS-presentation.html#(6) */
+
+.table-striped>tbody>tr:nth-of-type(odd) {
+    background-color: #f9f9f9
+}
+
+div.slide {
+  padding-top: 35px;
+  padding-bottom: 20px;
+  padding-left: 30px;
+}
+
+img[alt=fight] {
+  width: 350px;
+  display: inline-block;
+  float: right;
+}
+
+img[alt=shame] {
+  width: 350px;
+  display: inline-block;
+  float: right;
+  margin:50px;
+  color:transparent;
+}
+
+#story {
+  font-weight:bold;
+  font-size:40px;
+  color:black;
+  position:fixed;
+  top:40%;
+  text-align:center;
+  padding:1em;
+}
+
+
+#transition {
+  color:transparent;
+} 
+
+#not {
+  font-weight:bold;
+  font-size:50px;
+  color:black;
+  position: fixed; 
+  top:30%; 
+  text-align:center;
+  left:10%;
+  padding:1em;
+}
+
+
+#job {
+  color:transparent;
+} 
+
+#why {
+  background: url("figs/ds_hot.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  color:transparent;
+}
+
+#questions {
+  font-weight:bold;
+  font-size:40px;
+  color:black;
+  position:fixed;
+  top:30%;
+  text-align:center;
+  padding:1em;
+}
+
+
+#debate {
+   font-weight:bold;
+  font-size:40px;
+  color:black;
+  position:fixed;
+  top:30%;
+  text-align:center;
+  left:5%;
+  padding:1em;
+}
+
+.emphasized {
+   font-size: 1.2em;
+}
+
+
+.reveal code {
+    font-family: monospace;
+    color: green;
+    font-face: bold;
+}
+
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  word-wrap: normal;
+  -moz-hyphens: none;
+  font-size: 45px;
+}
+
+
+
+.small-code pre code {
+  font-size: 1em;
+}
+
+
+<style>
+.footer {
+    color: black;
+    font-family: Montserrat;
+    font-size: 9px;
+    background: #E8E8E8;
+    position: fixed;
+    top: 100%;
+    text-align:right;
+    width:100%; }
+</style>
+
+.reveal section del {
+  color: red;
+}
+
+  
