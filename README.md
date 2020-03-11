@@ -4,17 +4,17 @@
 # R-Ladies Montreal
 
 ## Upcoming events
-:date: Thursday February 20, 2020 
+:date: Thursday March 19, 2020 
 
-**Leaving academia and diving in data science: myths, tips and tricks**
+**The Philosophy and Statistics of Causal Inference**
 
 
 :alarm_clock: 6pm
 
-:round_pushpin: [Upgrade HQ](shorturl.at/kOSW6)  1080 Cote du Beaver Hall Suite 200, Montreal QC
+:round_pushpin: [Plotly HQ](shorturl.at/kOSW6)  5555 ave de Gaspé suite 118, Montreal QC
 
 
-:computer: [Link to material](https://github.com/rladies/meetup-presentations_montreal/tree/master/20200220_leaving-academia)
+:computer: Forthcoming
 
 
 :point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/)  
@@ -36,6 +36,7 @@
 | September 19, 2019 | 6 pm | Introduction to Dash for R | Workshop |  [Plotly HQ](https://goo.gl/maps/xCipeSaBddG2) | [materials to download in advance](https://github.com/rpkyle/rladies-mtl-demo/tree/24f8c6e37aeebc75a7077deddfd1075cd2b6df84) |
 | November 21, 2019 | 6pm | Introduction to dplyr | Workshop | [Upgrade Inc](shorturl.at/kOSW6) | [materials to download in advance](https://github.com/rladies/meetup-presentations_montreal/tree/master/20191121_dplyr-workshop)
 | January 16, 2020 | 6pm | Stock Market Analysis using R | Workshop | [Upgrade Inc](shorturl.at/kOSW6) | [materials to download in advance](https://github.com/Scott-Clone/portfolio-modelling/tree/993f826eee0fec086201875b14ed0ac4d53c02e8)
+| February 20, 2020 | 6pm | Leaving academia and diving in data science: myths, tips and tricks | Talk | [Upgrade Inc](shorturl.at/kOSW6) | [materials to download in advance](https://github.com/rladies/meetup-presentations_montreal/tree/master/20200220_leaving-academia)
 
 
 ## Speakers
