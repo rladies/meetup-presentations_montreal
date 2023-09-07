@@ -3,25 +3,6 @@
 
 # R-Ladies Montreal
 
-## Upcoming events
-:date: Thursday March 19, 2020 
-
-**The Philosophy and Statistics of Causal Inference**
-
-In this informal talk, [Dr. Mireille Schnitzer](https://www.mireilleschnitzer.com/) will give an overview of the foundations of what has become known as the field of “causal inference”. We will explore the historically popular idea of the sufficiency of data (i.e. that we can learn everything we need if we have enough data) and how this idea is violated when the goal is to infer on the effect of a cause. We will learn about the new-school perspectives on the connection between study design and assumptions that are needed -- in addition to data -- that allow us to properly estimate causal effects. Finally, we will go into more detail on the major contributions from various areas of research (statistics, computer science, epidemiology, and econometrics) that can be integrated to create a more-or-less cohesive approach to quantitative populational causal inference.
- 
-
-[Mireille Schnitzer](https://www.mireilleschnitzer.com/) is an Associate Professor of Biostatistics at the Université de Montréal and the Canada Research Chair in Causal Inference and Machine Learning in Health Sciences. A graduate of McGill University, she has also undertaken research at the University of California at Berkeley, the University of Pennsylvania, and the Harvard T.H. Chan School of Public Health. She holds grants from NSERC and CIHR to support both her statistical and applied work in health research. In her spare time, she teaches dance, crochets, and hangs out with her awesome bunny rabbit, Fiona.
-
-
-:alarm_clock: 6pm
-
-:round_pushpin: [Plotly HQ](shorturl.at/kOSW6)  5555 ave de Gaspé suite 118, Montreal QC
-
-
-:computer: Forthcoming
-
-
 :point_right: [Registration & Info](https://www.meetup.com/rladies-montreal/)  
 
 ## Past events
@@ -48,15 +29,20 @@ In this informal talk, [Dr. Mireille Schnitzer](https://www.mireilleschnitzer.co
 R-Ladies lives through its participants. We *ALWAYS* need speakers for meetups! Please get in touch with us through our [meetup page](https://www.meetup.com/rladies-montreal/)
 
 ## Further information
-Organisers are: [Kathryn Morrison](https://www.precision-analytics.ca/ourteam/) and [Erika Braithwaite](https://www.precision-analytics.ca/ourteam/).
+Organisers are: [Kathryn Morrison](https://www.precision-analytics.ca/ourteam/) and [Monica Cella](https://www.linkedin.com/in/mcella/?originalSubdomain=ca).
 
 
 Checkout our [Meetup page](https://www.meetup.com/rladies-montreal/) for more info!
 
-Follow us on [Twitter](https://twitter.com/RLadiesMTL).
+Follow us on [Twitter](@r_ladiesmtl).
+
+Follow us on [Instsagram](@rladiesmontreal)
+
 
 We follow the [Code of Conduct](https://github.com/rladies/starter-kit/wiki/Code-of-Conduct) and encourage participants to read [Rules & Guidelines of R-Ladies](https://github.com/rladies/starter-kit/blob/master/R-Ladies_RulesGuidelines.pdf).
 
 ## Sponsors
 
-A big thank you to our corporate sponsors at [<img src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/upgrade_logo.png" height = "40">](https://plot.ly/) for providing the food and drink, and [<img src="https://github.com/ErikaBraith/meetup-presentations_montreal/blob/master/archived/Plotly-logo.png" height = "30">](https://plot.ly/) for providing the space!
+Thank you to WeWork L'avenue / Precision Analytics for providing the space for our first 2023-24 event! 
+
+
