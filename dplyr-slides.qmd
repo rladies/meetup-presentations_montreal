@@ -1,0 +1,60 @@
+---
+title: "RLadies Reboot 2023-24"
+format:
+  revealjs: 
+    theme: simple
+editor: visual
+---
+
+## RLadies Montreal Reboot: 2023-24
+
+Welcome! Today's agenda:
+
+1.  6:00 - 6:15pm: Introductions
+2.  6:15 - 6:30pm: Brief history of RLadies Montreal + plan for this year
+3.  6:30 - 7:00pm: Introduction to data wrangling with dplyr
+4.  7:00 - 8:00pm: Interactive work/networking period
+
+## Introductions
+
+Kathryn Morrison
+
+Monica Cella
+
+## What is RLadies?
+
+-   General info (graphic)
+
+## Brief history of RLadies Montreal + plan for this year  
+
+-   Started by Kathryn + Erika in March 2018, had a very active chapter until the plague hit in 2020
+
+Corporate sponsors: Plotly, Upgrade, Precision Analytics
+
+-   Rebooting our local chapter
+
+-   Always looking for new corproate sponsors and most importantly, volunteer presenters!
+
+    -   Any topic is welcome and you **don't** need to be an expert - sometimes giving an introductory workshop or lesson is the best way to learn!
+
+    -   Past topics included ...
+
+## Brief history of RLadies Montreal + plan for this year  
+
+-   We will send out a survey with requests for specific topics
+
+-   We generally start each session with:
+
+    -   a brief hello/welcome from the organizors
+
+    -   an opportunity for anyone hiring or looking for work to mention it
+
+-   We're very open to feedback and suggestions in general!
+
+## Introduction to dplyr 
+
+-   
+
+```{r}
+1 + 1
+```
