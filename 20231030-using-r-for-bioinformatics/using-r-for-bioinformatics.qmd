@@ -47,6 +47,13 @@ All members must follow the [RLadies Code of Conduct](https://github.com/rladies
 
 ![](images/rhiannon.jpg){fig-align="center"}
 
+## Following along
+
+Slides available from (link also in Meetup chat):
+https://github.com/rladies/meetup-presentations_montreal/20231030-using-r-for-bioinformatics
+
+Scripts for exercises and demo also available.
+
 ## What is bioinformatics?
 
 ![](images/bioinformatics_venn_diagram.png){fig-align="center"}
