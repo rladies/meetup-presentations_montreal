@@ -2,7 +2,9 @@
 title: "\"R-omics\": Using R for Bioinformatics"
 subtitle: "R-Ladies MTL October 2023 Meetup"
 date: "2023-10-30"
-format: revealjs
+format:
+  revealjs:
+    embed-resources: true
 editor: visual
 ---
 
