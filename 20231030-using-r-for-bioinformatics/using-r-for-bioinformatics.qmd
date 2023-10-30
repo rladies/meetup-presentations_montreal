@@ -1,0 +1,293 @@
+---
+title: "\"R-omics\": Using R for Bioinformatics"
+subtitle: "R-Ladies MTL October 2023 Meetup"
+date: "2023-10-30"
+format: revealjs
+editor: visual
+---
+
+## R-Ladies MTL October 2023 Meetup
+
+Welcome! Today's agenda:
+
+6:00 - 6:15: Settling in
+
+6:15 - 6:30: Introductions and call for presenters!
+
+6:30 - 7:30: "R-omics": Using R for bioinformatics
+
+```         
+- Includes 20+ min break for exercises 
+```
+
+7:30 - 8:00: R-help/networking period
+
+## R-Ladies
+
+R Ladies Global seeks to achieve proportionate representation by encouraging, inspiring, and empowering women and gender minorities currently underrepresented in the R community
+
+We focus on the R language/environment (but if you want to talk about python or SAS, you won't be banned)
+
+All members must follow the [RLadies Code of Conduct](https://github.com/rladies/starter-kit/blob/master/RLadiesRulesAndGuideLinesENES.md#CoCEN)
+
+-   Community driven, independent, free of charge
+-   Safe and friendly, zero harassment!
+
+## Introductions: Kathryn Morrison
+
+![](images/kathryn.jpg){fig-align="center"}
+
+## Introductions: Monica Cella
+
+![](images/Monica.jpg){fig-align="center"}
+
+## Introductions: Rhiannon Kamstra
+
+![](images/rhiannon.jpg){fig-align="center"}
+
+## What is bioinformatics?
+
+![](images/bioinformatics_venn_diagram.png){fig-align="center"}
+
+------------------------------------------------------------------------
+
+![](images/2022_Sequencing_cost_per_Human_Genome.jpg){fig-align="center"}
+
+![](2022_Sequencing_cost_per_Human_Genome.jpg){fig-align="center"}
+
+## Data sources
+
+-   Often complex, high-throughput technology
+-   "-omics" examine large pools of biological molecules [![](images/Overview-of-different-omics-sciences-such-as-genomics-transcriptomics-and-proteomics.png)](https://www.researchgate.net/figure/Overview-of-different-omics-sciences-such-as-genomics-transcriptomics-and-proteomics_fig1_333003279)\
+
+------------------------------------------------------------------------
+
+![](images/From-genome-to-metabolome-genomics-is-a-relatively-mature-field-but-the-more-complex-of.jpg){fig-align="center"}
+
+## Tools for biological data
+
+-   Bioinformatics is broad and rapidly evolving
+
+-   Selection of tools and/or languages depends on application
+
+-   Applications with a **G**raphical **U**ser **I**nterface are common (e.g., Clustal for alignment)
+
+    ![](images/gr1.jpg){fig-align="center"}
+
+-   As are command-line tools
+
+## R in bioinformatics
+
+-   R is open-source and vastly extendable via packages
+-   Data wrangling, exploration, analysis, and visualization all in once place
+-   Supports reproducible science and knowledge sharing
+    -   Workflows can be scaled and shared by writing scripts or packages
+
+## Bioconductor
+
+![](images/Bioconductor.png){fig-align="center"}
+
+-   Started in 2001
+-   2nd largest **R package repository** after the CRAN
+    -   \~2.3k packages in v3.18!
+-   Focused on tools for analyzing data from biological assays
+
+## Installing Bioconductor packages
+
+1.  Install Bioconductor's package manager
+
+    ``` r
+    if (!require("BiocManager", quietly = TRUE))
+        install.packages("BiocManager")
+    ```
+
+2.  Search for available packages
+
+    ``` r
+    # List all packages
+    BiocManager::available()
+    # List only packages containing "sapiens" in the name
+    BiocManager::available(pattern = "sapiens")
+    ```
+
+    You can also use [https://www.bioconductor.org/packages/]().
+
+------------------------------------------------------------------------
+
+3.  Install Bioconductor packages
+
+    ``` r
+    # Install a specific package, e.g. Biostrings
+    BiocManager::install("Biostrings")
+    # Install all core Bioconductor packages (may take a while!)
+    BiocManager::install()
+    ```
+
+    **Note:** avoid using `install.packages()` to ensure you get the most up-to-date version
+
+## Working with raw sequence data
+
+-   DNA, RNA, and amino acid (protein) sequences can be represented as strings
+
+```{r}
+#| echo=TRUE
+# Letters represent bases G, C, T, A
+dna <- "TAGCAG"
+```
+
+-   Specialized object types can add functionality and improve performance (e.g., `DNAString`, `AAString`)
+
+```{r}
+#| echo=TRUE
+# DNAString objects are used for DNA sequences
+Biostrings::DNAString(dna)
+```
+
+## Use objects designed to work with multiple sequences
+
+-   Multiple sequences can be stored in a single vector
+
+```{r}
+#| echo=TRUE
+# DNAStringSet objects contain multiple DNAString values
+dna3 <- c("TAGCAG", "CCATTG", "AAG")
+Biostrings::DNAStringSet(dna3)
+```
+
+## Base R functions are often still useful
+
+-   Check the number of values/sequences
+
+``` r
+more_dna <- Biostrings::DNAStringSet(c("GC", "TA"))
+length(more_dna)
+```
+
+-   Add/extract elements (sequences)
+
+``` r
+# Extract the 2nd sequence
+more_dna[2]
+# Add a 3rd sequence
+more_dna[3] <- "AGGTAG"
+```
+
+------------------------------------------------------------------------
+
++-----------------------+---------------------------------------------------------+
+| Biostrings Function   | Purpose                                                 |
++=======================+=========================================================+
+| `translate()`         | Translate DNA/RNA to amino acids                        |
++-----------------------+---------------------------------------------------------+
+| `complement()`        | Get the (reversed) complementary sequence of base pairs |
+|                       |                                                         |
+| `reverseComplement()` |                                                         |
++-----------------------+---------------------------------------------------------+
+| `alphabetFrequency()` | Count the frequency of each letter                      |
++-----------------------+---------------------------------------------------------+
+| `matchPattern()`      | Finds matching occurrences of a pattern                 |
++-----------------------+---------------------------------------------------------+
+
+: Example functions for working with sequences
+
+## Exercises
+
+1.  Install the Bioconductor package `Biostrings` .
+
+2.  Store at least 2 DNA sequences in a DNAStringSet object.
+
+3.  Translate your DNA into amino acids.
+
+    **Bonus 1:** Try incorporating [ambiguous bases](https://www.ddbj.nig.ac.jp/ddbj/code-e.html) in your DNA. Test different `if.fuzzy.codon` options of `translate()`.
+
+4.  Count the number of methionine (M) residues in each sequence.
+
+    **Bonus 2:** Summarize the distribution across all of your sequences.
+
+https://www.ddbj.nig.ac.jp/ddbj/code-e.html
+
+## Working with special file formats
+
+-   Bioinformatics data often come in specialized file formats
+
+-   Common sequence data formats include:
+
+    -   FASTA
+
+    -   FASTQ - contains quality information
+
+    -   BAM
+
+    -   SAM - contains alignment to reference sequence
+
+-   `samtools`, `seqinr`, `ShortReads` are helpful packages for working with files
+
+## Command-line tools
+
+-   Many useful tools are used from the command-line
+
+    -   E.g., [BLAST](https://www.ncbi.nlm.nih.gov/books/NBK569856/) to compare a human coronavirus 3C-like protease (partial) sequence against [NCBI's protein database](https://www.ncbi.nlm.nih.gov/protein/)
+
+    ``` unix
+    blastp -query aa_seq.fasta -remote -db nr -out results.txt -outfmt 6 -evalue 1e-30
+    ```
+
+First 10 lines of output:
+
+``` vi
+# BLASTP 2.9.0+ 
+# Query: sars_partial
+# RID: KZSA0UTY016
+# Database: nr  
+# Fields: query acc.ver, subject acc.ver, % identity, alignment length, mismatches, gap opens, q. start, q. end, s. start, s. end, evalue, bit score
+# 500 hits found
+sars_partial    7WHC_A  100.000 70      0       0       1       70      1       70      3.24e-44        151
+sars_partial    7UJU_A  100.000 70      0       0       1       70      2       71      3.52e-44        151
+sars_partial    7UJ9_A  100.000 70      0       0       1       70      1       70      4.77e-44        151
+```
+
+## Build and execute calls from R
+
+-   The same call from R
+
+``` r
+aa_seq <- "SGFRKMAFPSGKVEGCMVQVTCGTTTLNGLWLDDVVYCPRHVICTSEDMLNPNYEDLLIRKSNHNFLVQA"
+names(aa_seq) <- "sars_partial"
+query_file <- "aa_seq.fasta"
+out_file <- "results.txt"
+
+# Write sequence as a FASTA file
+seqinr::write.fasta(aa_seq, names(aa_seq), file.out = my_file)
+
+# Construct call
+blast_call <- paste0("blastp -query ", query_file, " -remote -db nr -out ", out_file, " -outfmt 7 -evalue 1e-30")
+
+# Execute
+system(blast_call)
+```
+
+**Note:** Command-line tools (e.g., `blastp`) need to be installed and configured before use.
+
+## High-dimensional data
+
+-   E.g., gene expression data from microarrays or RNAseq
+
+    -   Quantity of expression (e.g., \# of transcripts) x 1,000s of genes (features)
+
+-   Presents special challenges for analysis and visualization
+
+    -   E.g., batch effects, multiple testing, handling large datasets
+
+-   **Spatial biology** platforms map gene expression over tissue coordinates
+
+## Demo: Mapping gene expression in a mouse brain
+
+![10X Visium counts mRNA for each gene in each 50 micron spot on the grid](images/mouse_brain.png){fig-align="center"}
+
+## Demo: Mapping gene expression in a mouse brain
+
+-   See `seurat_demo.R` to follow along
+
+-   Based on Seurat vignette/tutorial available at:
+
+    -   [https://satijalab.org/seurat/articles/seurat5_spatial_vignette]()
