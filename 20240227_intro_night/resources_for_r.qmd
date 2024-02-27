@@ -1,0 +1,43 @@
+---
+title: "Resources for learning R & Data Science"
+author: "R-Ladies MTL"
+format: 
+  html:
+    embed-resources: true
+editor: visual
+---
+
+## Getting started
+
+[R for Data Science (2e)](https://r4ds.hadley.nz/)(free ebook) by Hadley Wickham, Mine Cetinkaya-rundel, & Garrett Grolemund
+
+-   A **essential** hands-on resource for first-time and experienced R users.
+-   Teaches the "tidy" philosophy, which unifies common data science tasks in R with the shared language and principles found in [tidyverse](https://www.tidyverse.org/)) packages. This philosophy is about making your workflow more readable, human-centered, and productive.
+
+## Finding help
+
+[Getting help in R](https://www.r-project.org/help.html): A list of helpful functions in R for accessing manuals, vignettes, and function documentation
+
+[Handy cheatsheets](https://posit.co/resources/cheatsheets/)
+
+[StackOverflow](https://stackoverflow.com/): Before posting, try searching. Usually you'll find a helpful response!
+
+[UCLA Stats Website](https://stats.oarc.ucla.edu/r/): Helpful guides for performing basic statistical analysis in R and other languages (e.g., SAS).
+
+[Biostar](https://www.biostars.org/info/about/): Bioinformatics resource that has guides, books, packages, and an active forum with many R users.
+
+## Plotting and graphics
+
+[R Graph Gallery](https://r-graph-gallery.com/): A great resource for chart ideas with sample R code.
+
+[Color Brewer](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3): A resource for selecting color schemes (especially for maps) for different legend types. Includes palettes designed for colorblind accessibility and printing/copying.
+
+## Taking things a step further
+
+[R Packages (2e)](https://r-pkgs.org/) by Hadley Wickham and Jennifer Bryan (Free e-book)
+
+-   Highly recommended for learning about R packages. Even if you never build your own package, you will become more confident using and exploring existing packages and will expand your understanding of what a package can be useful for!
+
+[Advanced R](https://adv-r.hadley.nz/fp.html) by Hadley Wickham (Free e-book)
+
+-   Build on your knowledge of R by learning more about fundamentals like object types and functional versus object oriented programming paradigms
